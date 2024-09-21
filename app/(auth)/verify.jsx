@@ -22,7 +22,7 @@ const Verify = () => {
         // Handle sign-up logic
         }
     };
-
+    const othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7] rounded-md p-3 text-background-red flex flex-row items-center rounded-full border border-2"
     return (
         
         <SafeAreaView className="bg-background-red h-full">
@@ -47,7 +47,7 @@ const Verify = () => {
                 handleChangeText={(e) => setForm({ ...form, password: e })}
                 otherStyles="mt-7"
                 secureTextEntry
-                othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7]"
+                othercontainorStyles={othercontainorStyles}
             />
 
             {/* Sign Up Button */}

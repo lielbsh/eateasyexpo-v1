@@ -4,23 +4,27 @@ import { useState } from "react";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { icons } from "../constants";
 
-const FormField = ({ title, value, handleChangeText, otherStyles, keyboardType, secureTextEntry ,colors,othercontainorStyles}) => {
+const FormField = ({type, title, value, handleChangeText, otherStyles, keyboardType, secureTextEntry ,colors,othercontainorStyles,placeholder}) => {
     
     const [showPassword, setShowPassword] = useState(false); 
-        let string=` rounded-md p-3 text-background-red flex flex-row items-center rounded-full border border-2 ${othercontainorStyles}`
+        let string=` ${othercontainorStyles}`
     return (
     <View className={`w-full ${otherStyles}`}> 
-        <Text className="text-white font-psemibold mb-2 text-[16px]">{title}</Text>
+        {(title && type!="no title")&& 
+            (<Text className="text-white font-psemibold mb-2 text-[16px]">{title}</Text>)
+        }
+        
         <View className={string}>
             <TextInput
+                placeholder={placeholder}
                 style={{ flex: 1, fontFamily: 'Poppins-Regular',  }}
                 value={value}
                 onChangeText={handleChangeText}
                 keyboardType={keyboardType}
                 secureTextEntry={(title === "Password"||title === "Password Again") && !showPassword}
-                // className="border border-gray-300 p-2 rounded"
+                placeholderTextColor="#999"
             />
-            {(title === "Password"|| title === "Password Again") && (
+            {(type=="Password" ||title === "Password" ) && (
                 <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                     <Image
                     source={!showPassword ? icons.eyeHide : icons.eye}

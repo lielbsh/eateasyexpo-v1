@@ -24,7 +24,7 @@ const SignIn = () => {
       sighInReq(form)
     }
   };
-
+  const othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7] rounded-md p-3 text-background-red flex flex-row items-center rounded-full border border-2"
   return (
     
     <SafeAreaView className="bg-background-red h-full">
@@ -46,7 +46,7 @@ const SignIn = () => {
             value={form.username}
             handleChangeText={(e) => setForm({ ...form, username: e })}
             otherStyles="mt-7"
-            othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7]"
+            othercontainorStyles={othercontainorStyles}
           />
 
           <FormField
@@ -55,7 +55,7 @@ const SignIn = () => {
             handleChangeText={(e) => setForm({ ...form, password: e })}
             otherStyles="mt-7"
             secureTextEntry
-            othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7]"
+            othercontainorStyles={othercontainorStyles}
           />
           <View className="items-end">
           <View className="  flex-row mt-4">

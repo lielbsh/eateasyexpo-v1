@@ -24,7 +24,7 @@ const NewPassword = () => {
       // Handle sign-up logic
     }
   };
-
+  const othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7] rounded-md p-3 text-background-red flex flex-row items-center rounded-full border border-2"
   return (
     
     <SafeAreaView className="bg-background-red h-full">
@@ -49,7 +49,7 @@ const NewPassword = () => {
             handleChangeText={(e) => setForm({ ...form, password1: e })}
             otherStyles="mt-7"
             secureTextEntry
-            othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7]"
+            othercontainorStyles={othercontainorStyles}
           />
           <FormField
             title="Password Again"
@@ -57,7 +57,7 @@ const NewPassword = () => {
             handleChangeText={(e) => setForm({ ...form, password2: e })}
             otherStyles="mt-7"
             secureTextEntry
-            othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7]"
+            othercontainorStyles={othercontainorStyles}
           />
 
           {/* Sign Up Button */}

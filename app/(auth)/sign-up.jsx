@@ -24,7 +24,7 @@ const SignUp = () => {
       // Handle sign-up logic
     }
   };
-
+  const othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7] rounded-md p-3 text-background-red flex flex-row items-center rounded-full border border-2"
   return (
     
     <SafeAreaView className="bg-background-red h-full">
@@ -34,8 +34,8 @@ const SignUp = () => {
           <Image source={require('../../assets/images/logo1.png')}  className="w-[50px] h-[50px] mt-[20px]" />
         </View>
         
-      <ScrollView className=" h-[800px] " style={{ zIndex: 0 }}>
-        <View className="w-full flex justify-center h-full px-4  m-[px] mt-[40px]">
+      <ScrollView className=" flex-1 h-[800px] " style={{ zIndex: 0 }}>
+        <View className="w-full flex justify-center h-full px-4  m-[px] mt-[0px]">
           <View className="">
           <Text className="text-3xl font-semibold text-burgundy mt-10 font-psemibold">
             Sign Up
@@ -46,7 +46,7 @@ const SignUp = () => {
             value={form.username}
             handleChangeText={(e) => setForm({ ...form, username: e })}
             otherStyles="mt-7"
-            othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7]"
+            othercontainorStyles={othercontainorStyles}
           />
           
           <FormField
@@ -55,8 +55,7 @@ const SignUp = () => {
             handleChangeText={(e) => setForm({ ...form, email: e })}
             otherStyles="mt-7 "
             keyboardType="email-address"
-            othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7]"
-            
+            othercontainorStyles={othercontainorStyles}
           />
 
           
@@ -80,7 +79,7 @@ const SignUp = () => {
           </View>
         </View>
         </View>
-        <Link href="/new-password" className="text-sm font-psemibold text-white">Sgn in</Link>
+        <Link href="/verify" className="text-sm font-psemibold text-white">Sgn in</Link>
         <TouchableOpacity
           onPress={() => {
             allowAccess("canAccessVerify")
