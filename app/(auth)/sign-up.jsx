@@ -6,10 +6,15 @@ import { images } from "../../constants";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 import { Button, ImageBackground } from "react-native-web";
-import { useNavigationGuard } from "../../components/navigation/navigationGuard"; 
+import { useNavigationGuard } from "../../components/navigation/navigationGuard";
 
+
+import {useDataGuard} from "../../components/data/globaldata"
 const SignUp = () => {
   const { access,allowAccess } = useNavigationGuard();
+
+
+  const {user,updatData,resetData}=useDataGuard()
   const [form, setForm]  = useState({
     username: '',
     email: '',

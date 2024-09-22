@@ -5,7 +5,7 @@ import { retreiveData } from './cloud';
 //https://eateasyserver.onrender.com
 // Use axios to send a POST request to the server
 export async function sighInReq(dataToSend,updateData){
-    return axios.post('http://10.100.102.151:3000/trytologin', dataToSend, {
+    return axios.post('http://localhost:3000/trytologin', dataToSend, {
     headers: {
         'Content-Type': 'application/json'
     },

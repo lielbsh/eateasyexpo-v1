@@ -12,7 +12,6 @@ export async function retreiveData(dataToSend,updateData){
     })
     .then(response => {
         let {recipes,usercopy}=response.data
-        console.log(recipes,usercopy)
         updateData('recipes',recipes)
         updateData('groceries',usercopy.groceries)
         updateData('cart',usercopy.cart)
