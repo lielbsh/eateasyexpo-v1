@@ -5,10 +5,10 @@ import { useNavigation } from "@react-navigation/native";
 import { images } from "../constants";
 import { StatusBar } from "expo-status-bar";
 import { Link, router } from "expo-router";
-import LoadinComponent from "../components/loadingComponent"
+
 
 export default function Index() {
-  const [reload,setReload]=useState(false)
+  
   
 
   
@@ -36,7 +36,7 @@ export default function Index() {
         {/* Register Button */}
         <TouchableOpacity
           className="bg-primary mt-8 px-6 py-3 rounded-full border border-burgundy border-2 bg-background-beige"
-          onPress={() => router.push("/sign-up")} // Navigate to register screen
+          onPress={() => router.push("/recipes")} // Navigate to register screen
         >
           <Text className="color-burgundy font-bold text-lg">Create Account</Text>
         </TouchableOpacity>
@@ -46,11 +46,7 @@ export default function Index() {
           className="mt-4"
           // onPress={() => router.push("/sign-in")}
           onPress={() => {
-            setReload(true)
-            setTimeout(() => {
-              router.replace('/home');
-              
-          }, 4490)
+            router.replace('/sign-in');
           }} // Navigate to login screen
         >
           <View className="flex-row">
@@ -62,8 +58,6 @@ export default function Index() {
         </TouchableOpacity>
 
       </View>
-      
-      {(reload) && (<LoadinComponent></LoadinComponent>)}
       <StatusBar backgroundColor="#161622" style="light" />
       
     </SafeAreaView>

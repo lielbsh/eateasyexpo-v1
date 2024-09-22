@@ -1,15 +1,17 @@
-import { View, Text } from 'react-native'
+import { View, Text ,TouchableOpacity} from 'react-native'
 import React from 'react'
 import { AntDesign } from '@expo/vector-icons'; 
 
-const deleteButton = ({handlePress}) => {
+
+const DeleteButton = ({handlePress,contaniorstyles,color,activeOpacity,size}) => {
   return (
     <TouchableOpacity
+        activeOpacity={activeOpacity}
         onPress={() => handlePress}
-        className="absolute top-2 right-[20%] p-1.5">
-        <AntDesign name="closecircle" size={24} color="white" />
+        className={contaniorstyles}>
+        <AntDesign name="closecircle" size={size} color={color} />
     </TouchableOpacity>
   )
 }
 
-export default deleteButton
+export default DeleteButton

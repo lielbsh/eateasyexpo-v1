@@ -16,7 +16,7 @@ export async function sighInReq(dataToSend,updateData){
         // Handle the response 
         if (data.result === 'login sucessful. Retrieving your data') {
             retreiveData(dataToSend,updateData)
-            
+            console.log("tryto login")
             return(data.result)
             
         } else {

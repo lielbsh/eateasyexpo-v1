@@ -7,6 +7,7 @@ import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 import { Button, ImageBackground } from "react-native-web";
 import { useNavigationGuard } from "../../components/navigation/navigationGuard";
+import {sighUpReq} from "../../scripts/regesterScript/sign-up"
 
 
 import {useDataGuard} from "../../components/data/globaldata"

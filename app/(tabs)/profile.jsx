@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 import ChangeInformation from "../../components/ChangeInformation"
+import Header from '../../components/Header';
+
 const Profile = () => {
   const [updatedataoption,setupdatedataoption]=useState({
     change:true,
@@ -95,11 +97,8 @@ const Profile = () => {
   
   return (
     <SafeAreaView className="bg-background-beige flex-1" edges={['top', 'left', 'right']}>
-      <View className="flex-row h-[60px] mt-[20px] ml-[20px]">
-          <Text className="color-red text-3xl font-bold mt-[0px] text-primary">Eat</Text>
-          <Text className="color-red underline-[2px] text-3xl font-bold font-cursive leading-[42px]">Easy</Text>
-          <Image source={require('../../assets/images/logo2.png')}  className="w-[45px] h-[45px] mt-[-4px]" />
-        </View>
+      <Header
+      color={"#F1684B"}/>
 
         <ScrollView className="flex-1 mx-[20px] mt-[10px] ">
           

@@ -43,10 +43,35 @@ const Home = () => {
   // Helper function to render saved recipes
   const renderSavedRecipes = () => {
     return items.map(item => (
-      <View key={item.id} className="w-[202px] bg-gray-800 rounded-[10px] items-center">
-        <TouchableOpacity activeOpacity={0.7} className="w-[200px] bg-background-shadowsheer rounded-[10px] items-center" onPress={() => router.push("/sign-up")}>
-          <Image source={{ uri: item.image }} className="w-[195px] h-[120px] rounded-[10px] mt-[3px]" />
-          <Text className="text-[20px] font-bold color-offwhite mt-[10px] max-w-[190px] max-h-[30px]">{item.name}</Text>
+      <View key={item.id} className="w-[202px]   rounded-[10px] items-center"
+      
+      >
+        <TouchableOpacity activeOpacity={0.7} className="w-[200px] rounded-[9px] items-center justify-center"  onPress={() => router.push("/sign-up")}>
+          
+        <View
+          style={{
+            width: 195,
+            height: 145,
+            marginTop: 5,
+            
+          }}
+        >
+          <Image
+            source={{ uri: item.image }}
+            style={{
+              width: '100%',
+              height: '100%',
+              borderRadius:'10px'
+              
+            }}
+          />
+        </View>
+        <View className="absolute bottom-[0px] w-[195px] bg-black/50 py-2 px-4 rounded-b-lg items-center">
+          <Text className="text-[15px] font-bold text-white shadow-md">
+              {item.name}
+          </Text>
+        </View>
+          {/* <Text className="text-[20px] font-bold color-shadow my-[5px] max-w-[190px] max-h-[30px]">{item.name}</Text> */}
         </TouchableOpacity>
       </View>
     ));
@@ -56,7 +81,8 @@ const Home = () => {
     <SafeAreaView className="bg-background-beige flex-1" edges={['top', 'left', 'right']} >
 
       {/* Header Section */}
-      <Header/>
+      <Header
+      color={"#F1684B"}/>
       
       <ScrollView >
 
@@ -77,9 +103,9 @@ const Home = () => {
           <AutoScrollBanner />
 
           {/* Saved Recipes Section */}
-          <View className="h-[200px] mt-[30px]">
-            <Text className="text-[20px] font-semibold color-shadow mb-2">Remake the dishes you saved</Text>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} className="h-[200px] space-x-[10px]">
+          <View className="h-[210px] mt-[30px] rounded-[10px] p-[5px] pl-[15px]"style={{backgroundColor:'rgba(255, 254, 252,0.7)'}} >
+            <Text className="text-[20px] font-bold color-shadow mb-[15px] mt-[3px]">Some of the dishes you saved</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} className="h-[200px] space-x-[0px]">
               {renderSavedRecipes()}
             </ScrollView>
           </View>

@@ -12,6 +12,7 @@ module.exports = {
           offwhitesheer:'rgba(255, 254, 252,0.9)',
           shadowsheer: "rgba(88, 87, 81,0.9)", // HEX: #585751, RGB: 88, 87, 81
           shadowverysheer: "rgba(88, 87, 81,0.5)",
+          offwhiteverysheer:'rgba(255, 254, 252,0.6)',
         },
         box: "#ccc9b8", // HEX: #ccc9b8, RGB: 204, 201, 184
         shadow: "#585751", // HEX: #585751, RGB: 88, 87, 81

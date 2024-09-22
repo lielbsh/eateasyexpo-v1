@@ -7,9 +7,11 @@ import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 import {sighInReq} from "../../scripts/regesterScript/sign-in.js"
 import { useDataGuard } from '../../components/data/globaldata.jsx';
+import LoadinComponent from "../../components/loadingComponent"
 
 
 const SignIn = () => {
+  const [reload,setReload]=useState(false)
   const { user,updateData,resetData } = useDataGuard();
   const [form, setForm]  = useState({
     username: '',
@@ -25,9 +27,17 @@ const SignIn = () => {
     } else {
       const result= await sighInReq(form,updateData)
       if (result == 'login sucessful. Retrieving your data') {
-        router.push('/home')
+          setReload(true)
+          setTimeout(() => {
+            router.replace('/home');
+            
+        }, 4490)
       } else {
-        
+        setReload(true)
+          setTimeout(() => {
+            router.replace('/home');
+            
+        }, 4490)
         
     }
     }
@@ -95,6 +105,9 @@ const SignIn = () => {
       </ScrollView>
       <Image source={require('../../assets/images/background.png')}  className="absolute w-[500px] h-[500px] top-[450px] left-[50px]" style={{ opacity: 0.5, zIndex: -1 }}
       />
+      
+      {(reload) && (<LoadinComponent></LoadinComponent>)}
+      
       
       </SafeAreaView>
   );

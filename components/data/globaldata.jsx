@@ -13,6 +13,7 @@ export const DataProvider = ({ children }) => {
     cart:[],
     username:'',
     email:'',
+    changes:[['ADD',{title:'Homemade Vanilla Pudding',photolink:'https://www.allrecipes.com/thmb/Jb5RxxSsfbgxhUqGgdXr__0lXFY=/282x188/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20586-homemade-vanilla-pudding-DDMFS-4x3-b69285facb244125bed3db6ad4cf2d9f.jpg',link:'https://www.allrecipes.com/recipe/20586/homemade-vanilla-pudding/',recipe:''}]]
 
   });
   useEffect(() => {
@@ -36,6 +37,7 @@ export const DataProvider = ({ children }) => {
         cart:[],
         username:'',
         email:'',
+        changes:[]
     
       });
   };

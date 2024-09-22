@@ -104,29 +104,6 @@ const LoadinComponent = () => {
         </Animated.View>
       </View>
       <View className='absolute w-[100%] h-[100%] top-0 left-0 justify-center items-end'>
-      <View className="flex-row ">
-      <View
-        style={{
-          width: 0,
-          height: 0,
-          borderTopWidth: 180,
-          borderBottomWidth: 180,
-          borderRightWidth: 140,
-          borderTopColor: 'transparent',
-          borderBottomColor: 'transparent',
-          borderRightColor: '#F1684B', // Color of the arrow
-          marginTop:100
-        }}
-      />
-      <Animated.View
-        style={{
-          width: animatedArrow,
-          height: 230,
-          backgroundColor:'#F1684B',
-          marginTop:170
-        }}
-      />
-      </View>
       </View>
       
     </Animated.View>
