@@ -6,7 +6,7 @@ const NavigationContext = createContext();
 export const useNavigationGuard = () => useContext(NavigationContext);
 
 // Provider component to wrap around your app
-export const NavigationProvider = ({ children }) => {
+export const NavigationProviderGaurd = ({ children }) => {
   const [access, setAccess] = useState({
     canAccessVerify: false,
     canAccessNewPassword: false,

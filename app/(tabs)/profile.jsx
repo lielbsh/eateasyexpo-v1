@@ -10,20 +10,22 @@ const Profile = () => {
     value:'every week'
   })
   const [edit,setEdit]=useState(false)
-  const updatedataoptions=['every day','every week','every month']
+  const updatedataoptions=[{key:'every day'}
+  ,{key:'every week'},
+  {key:'every month'}]
   const [user,setuser]=useState({
     email:"assaf.assa@gmail.com",
     username:"Assaf"
   })
   
   const settingactions=[
-    { name:"Change your password",
+    { key: 1,name:"Change your password",
       handlefunction:()=>{console.log("Change your password")}
     },
-    { name:"log out",
+    { key: 2,name:"log out",
       handlefunction:()=>{console.log("User logged out")}
     },
-    { name:"Delete your account",
+    { key: 3,name:"Delete your account",
       handlefunction:()=>{console.log("User Delete your account")}
     },
     
@@ -135,11 +137,11 @@ const Profile = () => {
           </View >
           {updatedataoption.change&& (
             updatedataoptions.map(option => (
-          <View className=" h-[42px] justify-center">
+          <View className=" h-[42px] justify-center" key={option.key}>
             <View className="flex-row justify-end mr-[10px] ">
                  <TouchableOpacity
                 onPress={()=>{
-                  handlechangeupdatedata(option)
+                  handlechangeupdatedata(option.key)
                 }}
                 activeOpacity={0.3}
                 className="bg-secondary  justify-center 
@@ -148,7 +150,7 @@ const Profile = () => {
               >
                 <View className="flex-row  ml-[10px]">
                   
-                  <Text className="font-psemibold text-[15px] color-shadow mr-[13px]">{option}</Text>
+                  <Text className="font-psemibold text-[15px] color-shadow mr-[13px]">{option.key}</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -159,6 +161,7 @@ const Profile = () => {
 
           {settingactions.map(action=>(<View className=" h-[60px]">
               <TouchableOpacity
+              key={action.key}
               onPress={()=>{handlelactions(action)}}
               activeOpacity={0.7}
               className="bg-secondary rounded-3xl  flex-1 justify-center 

@@ -4,7 +4,8 @@ import { Link, Stack, SplashScreen } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { NavigationProvider } from '../components/navigation/navigationGuard';
+import { NavigationProviderGaurd } from '../components/navigation/navigationGuard';
+import { DataProvider } from '../components/data/globaldata';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -39,13 +40,15 @@ export default function App() {
 
   return (
     <GestureHandlerRootView>
-      <NavigationProvider>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false}} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false}} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false}} />
-      </Stack>
-      </NavigationProvider>
+      <DataProvider>
+        <NavigationProviderGaurd>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false}}  />
+          <Stack.Screen name="(auth)" options={{ headerShown: false, }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false,}} />
+        </Stack>
+        </NavigationProviderGaurd>
+      </DataProvider>
     </GestureHandlerRootView>
   );
 }

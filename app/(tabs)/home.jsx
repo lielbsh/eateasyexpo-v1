@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { icons } from '../../constants';
 import { router } from 'expo-router';
 import AutoScrollBanner from '../../components/AutoScrollBanner';
+import CustomSearchBar from '../../components/CustomSearchBar';
+import Header from '../../components/Header';
 
 
 const Home = () => {
@@ -52,30 +53,18 @@ const Home = () => {
   };
 
   return (
-    <SafeAreaView className="bg-background-beige flex-1 " edges={['top', 'left', 'right']} >
-      <View className="flex-row h-[60px] mt-[20px] ml-[20px]">
-          <Text className="color-red text-3xl font-bold text-primary">Eat</Text>
-          <Text className="color-red underline-[2px] text-3xl font-bold font-cursive leading-[42px]">Easy</Text>
-          <Image source={require('../../assets/images/logo2.png')} className="w-[45px] h-[45px] mt-[-4px]" />
-        </View>
+    <SafeAreaView className="bg-background-beige flex-1" edges={['top', 'left', 'right']} >
+
+      {/* Header Section */}
+      <Header/>
+      
       <ScrollView >
-        {/* Header Section */}
-        
 
         <View className="flex-1 px-4">
           <Text className="text-3xl font-psemibold color-green mb-[10px]">Hi {username}!</Text>
 
           {/* Search Bar */}
-          <View className="my-4">
-            <View className="flex-row items-center bg-background-shadow p-3 rounded-full shadow-sm opacity-[0.7]">
-              <TextInput
-                placeholder="What Will We Be Cooking Today?"
-                className="flex-1 color-offwhite text-bold"
-                placeholderTextColor={'white'}
-              />
-              <Image source={icons.search} className="w-6 h-6 mr-2" />
-            </View>
-          </View>
+          <CustomSearchBar title={"What Will We Be Cooking Today?"}/>
 
           {/* Horizontal Scroll Section for Suggestions */}
           <View className="h-[65px]">
@@ -96,7 +85,6 @@ const Home = () => {
           </View>
         </View>
 
-        
         
       </ScrollView>
       <Image source={require('../../assets/images/background3.png')} className="absolute w-[700px] h-[550px] top-[-200px] left-[230px]" style={{ opacity: 0.7, zIndex: -1 }} />

@@ -1,19 +1,22 @@
-import React from "react";
+import {React, useState} from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { images } from "../constants";
 import { StatusBar } from "expo-status-bar";
-import { Link, Redirect, router } from "expo-router";
+import { Link, router } from "expo-router";
+import LoadinComponent from "../components/loadingComponent"
 
 export default function Index() {
-  const navigation = useNavigation(
+  const [reload,setReload]=useState(false)
+  
 
-  ); 
+  
 
   return (
     <SafeAreaView className="bg-background-red h-full">
-      <View className="flex-1 justify-center items-center px-4">
+      
+      <View className="flex-1 justify-center items-center px-4" >
 
         {/* App Logo */}
         
@@ -23,7 +26,7 @@ export default function Index() {
           <Text className="color-offwhite underline-[2px] text-5xl font-bold font-cursive leading-[80px]">Easy</Text>
           <Image source={require('../assets/images/logo1.png')}  className="w-[50px] h-[50px] mt-[20px]" />
         </View>
-  
+
         {/* Title or Tagline */}
         
         <Image source={require('../assets/images/mainpaige.png')}  className="w-[400px] h-[350px]" />
@@ -41,7 +44,14 @@ export default function Index() {
         {/* Already have an account? */}
         <TouchableOpacity
           className="mt-4"
-          onPress={() => router.push("/cart")} // Navigate to login screen
+          // onPress={() => router.push("/sign-in")}
+          onPress={() => {
+            setReload(true)
+            setTimeout(() => {
+              router.replace('/home');
+              
+          }, 4490)
+          }} // Navigate to login screen
         >
           <View className="flex-row">
           <Text className="color-burgundy text-primary text-base">Already have an account? </Text>
@@ -52,8 +62,10 @@ export default function Index() {
         </TouchableOpacity>
 
       </View>
+      
+      {(reload) && (<LoadinComponent></LoadinComponent>)}
       <StatusBar backgroundColor="#161622" style="light" />
-
+      
     </SafeAreaView>
   );
 }

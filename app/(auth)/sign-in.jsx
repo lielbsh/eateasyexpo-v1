@@ -1,33 +1,41 @@
-import { View, Text, ScrollView, Alert, Image, Dimensions } from "react-native";
+import { View, Text, ScrollView, Alert, Image } from "react-native";
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { images } from "../../constants"
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 import {sighInReq} from "../../scripts/regesterScript/sign-in.js"
-// import { useGlobalContext } from "../../context/GlobalProvider";
+import { useDataGuard } from '../../components/data/globaldata.jsx';
 
 
 const SignIn = () => {
+  const { user,updateData,resetData } = useDataGuard();
   const [form, setForm]  = useState({
     username: '',
     password: ''
   });
-
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submit = async () => {
+    setIsSubmitting(true)
     if (form.username === "" || form.password === "") {
       Alert.alert("Oops!", "Please fill in all fields");
     } else {
-      sighInReq(form)
+      const result= await sighInReq(form,updateData)
+      if (result == 'login sucessful. Retrieving your data') {
+        router.push('/home')
+      } else {
+        
+        
+    }
     }
   };
   const othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7] rounded-md p-3 text-background-red flex flex-row items-center rounded-full border border-2"
   return (
     
-    <SafeAreaView className="bg-background-red h-full">
+    <SafeAreaView className="bg-background-red h-full" >
       <View className="flex-row h-[80px] mt-[30px] ml-[20px]">
           <Text className="color-offwhite text-5xl font-bold mt-[20px] text-primary">Eat</Text>
           <Text className="color-offwhite underline-[2px] text-5xl font-bold font-cursive leading-[80px]">Easy</Text>
@@ -87,6 +95,7 @@ const SignIn = () => {
       </ScrollView>
       <Image source={require('../../assets/images/background.png')}  className="absolute w-[500px] h-[500px] top-[450px] left-[50px]" style={{ opacity: 0.5, zIndex: -1 }}
       />
+      
       </SafeAreaView>
   );
 }

@@ -1,8 +1,7 @@
 import { View, Text, Dimensions, Image, StyleSheet, FlatList, TouchableOpacity, Alert , Linking, Button} from 'react-native'
 import React, { useRef, useState, useEffect } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, router } from 'expo-router';
-import { AntDesign } from '@expo/vector-icons'; // Expo icons
+
 
 
 const { width } = Dimensions.get('window');
@@ -47,7 +46,7 @@ const AutoScrollBanner = () => {
 
   return (
     <View className='mt-[20px] bg-white/50 py-2 px-4 rounded-lg'>
-      <Text className="text-lg font-bold">Notifications</Text>
+      <Text className="text-xl font-bold color-shadow">Notifications</Text>
       <FlatList
           ref={flatListRef}
           data={massagesData}

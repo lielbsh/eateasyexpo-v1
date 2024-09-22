@@ -26,7 +26,7 @@ const CustomButton = ({
           animating={isLoading}
           color="#fff"
           size="small"
-          className="ml-2"
+          className="ml-2 items-center"
         />
       )}
     </TouchableOpacity>

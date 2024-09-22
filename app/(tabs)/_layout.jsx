@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Tabs, Redirect } from 'expo-router';
 import { icons } from '../../constants';
 import { colors } from '../../constants/colors';
+import FadeOutComponent from '../../components/endtransition';
 
 const TabsLayout = () => {
   const TabIcon = ({ icon, color, name, focused }) => {
@@ -44,6 +45,7 @@ const TabsLayout = () => {
       <Tabs.Screen
         name='home'
         options = {{
+          
           title: 'Home',
           headerShown: false,
           tabBarIcon: ({ color, focused }) => (
@@ -103,7 +105,7 @@ const TabsLayout = () => {
 
 
     </Tabs>
-    
+          
     </>
   )
 }

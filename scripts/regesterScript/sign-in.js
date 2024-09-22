@@ -1,10 +1,11 @@
 
 import axios from 'axios';
+import { retreiveData } from './cloud';
 
-
+//https://eateasyserver.onrender.com
 // Use axios to send a POST request to the server
-export async function sighInReq(dataToSend){
-    axios.post('https://eateasyserver.onrender.com/trytologin', dataToSend, {
+export async function sighInReq(dataToSend,updateData){
+    return axios.post('http://10.100.102.151:3000/trytologin', dataToSend, {
     headers: {
         'Content-Type': 'application/json'
     },
@@ -14,10 +15,13 @@ export async function sighInReq(dataToSend){
         const data = response.data;  // Axios automatically parses JSON
         // Handle the response 
         if (data.result === 'login sucessful. Retrieving your data') {
-            console.log('1');
-            // Call retreevedata() or any other function if needed
+            retreiveData(dataToSend,updateData)
+            
+            return(data.result)
+            
         } else {
-            console.log('2', data.result);
+            
+            return(data.result)
             // Optionally, you can add a timeout here if needed
             // setTimeout(() => console.log('Reset message'), 3000);
         }
