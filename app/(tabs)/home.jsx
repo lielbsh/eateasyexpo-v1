@@ -3,8 +3,8 @@ import { View, Text, Image, TouchableOpacity, ScrollView, TextInput } from 'reac
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import AutoScrollBanner from '../../components/AutoScrollBanner';
-import CustomSearchBar from '../../components/CustomSearchBar';
-import Header from '../../components/Header';
+import CustomSearchBar from '../../components/custom/CustomSearchBar';
+import Header from '../../components/custom/Header';
 
 
 const Home = () => {

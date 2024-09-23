@@ -1,8 +1,8 @@
 import { View, Text,Image ,TouchableOpacity, ScrollView,Alert} from 'react-native'
 import {React,useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import FormField from "./FormField";
-import CustomButton from "./CustomButton";
+import FormField from "./custom/FormField";
+import CustomButton from "./custom/CustomButton";
 const ChangeInformation = ({user,setuser}) => {
   const [updatedataoption,setupdatedataoption]=useState({
     change:true,

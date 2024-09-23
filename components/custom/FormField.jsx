@@ -2,7 +2,7 @@ import { TextInput, View, Text, Image } from 'react-native';
 import React from 'react'
 import { useState } from "react";
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { icons } from "../constants";
+import { icons } from "../../constants";
 
 const FormField = ({type, title, value, handleChangeText, otherStyles, keyboardType, secureTextEntry ,colors,othercontainorStyles,placeholder}) => {
     

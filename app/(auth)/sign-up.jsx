@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link, Redirect } from "expo-router";
 import { images } from "../../constants";
-import FormField from "../../components/FormField";
-import CustomButton from "../../components/CustomButton";
+import FormField from "../../components/custom/FormField";
+import CustomButton from "../../components/custom/CustomButton";
 import { Button, ImageBackground } from "react-native-web";
 import { useNavigationGuard } from "../../components/navigation/navigationGuard";
 import {sighUpReq} from "../../scripts/regesterScript/sign-up"

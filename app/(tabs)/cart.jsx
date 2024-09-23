@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, Animated, TouchableOpacity, SafeAreaView, Modal, Image } from 'react-native';
-import Header from '../../components/Header'; 
-import CustomSearchBar from '../../components/CustomSearchBar'; 
+import Header from '../../components/custom/Header'; 
+import CustomSearchBar from '../../components/custom/CustomSearchBar'; 
 import { icons } from '../../constants'; 
 import ConfirmationModal from '../../components/ConfirmationModal';
 import { toBuyList as initialToBuyList, atHomeList as initialAtHomeList } from '../../scripts/convertToFood';
-import CartItem from '../../components/CartItem'; // Import the new CartItem component
-import FloatingActionButton from '../../components/FloatingActionButton';
+import CartItem from '../../components/custom/CartItem'; // Import the new CartItem component
+import FloatingActionButton from '../../components/custom/FloatingActionButton';
 import backgroundImage from '../../assets/images/background4.png';
 
 

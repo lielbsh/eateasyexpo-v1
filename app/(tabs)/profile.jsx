@@ -1,10 +1,10 @@
 import { View, Text,Image ,TouchableOpacity, ScrollView,Alert} from 'react-native'
 import {React,useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import FormField from "../../components/FormField";
-import CustomButton from "../../components/CustomButton";
+import FormField from "../../components/custom/FormField";
+import CustomButton from "../../components/custom/CustomButton";
 import ChangeInformation from "../../components/ChangeInformation"
-import Header from '../../components/Header';
+import Header from '../../components/custom/Header';
 
 const Profile = () => {
   const [updatedataoption,setupdatedataoption]=useState({
@@ -103,9 +103,11 @@ const Profile = () => {
         <ScrollView className="flex-1 mx-[20px] mt-[10px] ">
           
            <Text className="font-psemibold text-[20px]">your information:</Text>
-          
+
+          {/* //chainging email and username component */}
           <ChangeInformation user={user} setuser={setuser}></ChangeInformation> 
 
+          {/* //choosing freqency of updating data to cloud */}
           <View className=" mt-[25px] h-[40px] justify-center">
             <View className="flex-row justify-between ">
             <Text className="font-psemibold text-[15px] ml-[15px] mt-[10px]">update your data on cloud</Text>
@@ -144,12 +146,12 @@ const Profile = () => {
                 }}
                 activeOpacity={0.3}
                 className="bg-secondary  justify-center 
-                  bg-background-offwhitesheer w-[110px] h-[40px]"
+                  bg-background-offwhitesheer w-[115px] h-[40px]"
 
               >
                 <View className="flex-row  ml-[10px]">
                   
-                  <Text className="font-psemibold text-[15px] color-shadow mr-[13px]">{option.key}</Text>
+                  <Text className="font-psemibold text-[15px] color-shadow mr-[10px]">{option.key}</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -158,6 +160,7 @@ const Profile = () => {
             ))
         )}
 
+        
           {settingactions.map(action=>(<View className=" h-[60px]">
               <TouchableOpacity
               key={action.key}

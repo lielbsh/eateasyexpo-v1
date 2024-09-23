@@ -46,7 +46,7 @@ export default function Index() {
           className="mt-4"
           // onPress={() => router.push("/sign-in")}
           onPress={() => {
-            router.replace('/sign-in');
+            router.push('/sign-in');
           }} // Navigate to login screen
         >
           <View className="flex-row">

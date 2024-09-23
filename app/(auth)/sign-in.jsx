@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Link, router } from "expo-router";
 import { images } from "../../constants"
-import FormField from "../../components/FormField";
-import CustomButton from "../../components/CustomButton";
+import FormField from "../../components/custom/FormField";
+import CustomButton from "../../components/custom/CustomButton";
 import {sighInReq} from "../../scripts/regesterScript/sign-in.js"
 import { useDataGuard } from '../../components/data/globaldata.jsx';
-import LoadinComponent from "../../components/loadingComponent"
+import LoadinComponent from "../../components/custom/loadingComponent"
 
 
 const SignIn = () => {
