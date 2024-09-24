@@ -1,14 +1,12 @@
 
 import axios from 'axios';
-let username
-let email
-let action
-let messageid
-let premitivecookie
+
 
 // Use axios to send a POST request to the server
-export async function sighUpReq(dataToSend){
-    axios.post('https://localhost:3000/signup', dataToSend, {
+//data to send = {username,email,action="create user"}
+export async function signUpReq(dataToSend,updateData){
+    dataToSend.action="create user"
+    return axios.post('http://localhost:3000/signup', dataToSend, {
     headers: {
         'Content-Type': 'application/json'
     },
@@ -17,7 +15,7 @@ export async function sighUpReq(dataToSend){
     .then(response => {
         const data = response.data;  // Axios automatically parses JSON
         if (data.result=='Username or mail no exits.'){
-            // sendverifymail(dataToSend)
+            sendverifymail(dataToSend)
             return('Contuning to verify email.')
         }else {
         return(data.result)
@@ -30,19 +28,19 @@ export async function sighUpReq(dataToSend){
 }
 
 export async function sendverifymail(dataToSend){
-    axios.post('https://localhost:3000/signup', dataToSend, {
+    console.log("ver",dataToSend)
+    return axios.post('http://localhost:3000/signup/verifymail', dataToSend, {
     headers: {
         'Content-Type': 'application/json'
     },
     withCredentials: true  // Ensure this is set to send cookies
     })
     .then(response => {
-        if (response.result=="messege sent"){
-            messageid=response.messageid
-            premitivecookie=response.premitivecookie
+        let data=response.data
+        if (data.result=="messege sent"){
             return("Message sent, look in your email.")
             
-        }else if (response.result=="messege not sent"){
+        }else if (data.result=="messege not sent"){
             return("Failed semd message.Try another time.")
         }
     })

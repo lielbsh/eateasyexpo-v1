@@ -5,10 +5,15 @@ import { router } from 'expo-router';
 import AutoScrollBanner from '../../components/AutoScrollBanner';
 import CustomSearchBar from '../../components/custom/CustomSearchBar';
 import Header from '../../components/custom/Header';
+import SearchModal from '../../components/custom/SearchModal';
 
 
 const Home = () => {
   const username = 'Assaf';
+  const [searchMode, setSearchMode] = useState(false);
+  const toggleSearchMode = () => {
+    setSearchMode(!searchMode);
+  }
 
   const [savedRecipes, setSavedRecipes] = useState([
     { title: 'Cake', id: 1 },
@@ -43,7 +48,7 @@ const Home = () => {
   // Helper function to render saved recipes
   const renderSavedRecipes = () => {
     return items.map(item => (
-      <View key={item.id} className="w-[202px]   rounded-[10px] items-center"
+      <View key={item.id} className="w-[202px] rounded-[10px] items-center"
       
       >
         <TouchableOpacity activeOpacity={0.7} className="w-[200px] rounded-[9px] items-center justify-center"  onPress={() => router.push("/sign-up")}>
@@ -61,7 +66,7 @@ const Home = () => {
             style={{
               width: '100%',
               height: '100%',
-              borderRadius:'10px'
+              borderRadius: 10
               
             }}
           />
@@ -89,8 +94,16 @@ const Home = () => {
         <View className="flex-1 px-4">
           <Text className="text-3xl font-psemibold color-green mb-[10px]">Hi {username}!</Text>
 
-          {/* Search Bar */}
-          <CustomSearchBar title={"What Will We Be Cooking Today?"}/>
+          {/* Search Bar & Modal*/}
+          <CustomSearchBar
+            title={'What Will We Be Cooking Today?'}
+            handelPress={toggleSearchMode}
+          />
+          <SearchModal
+            _title={"What Will We Be Cooking Today?"}
+            _searchMode={searchMode}
+            _toggleSearchMode={toggleSearchMode}
+          />
 
           {/* Horizontal Scroll Section for Suggestions */}
           <View className="h-[65px]">

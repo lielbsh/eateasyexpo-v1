@@ -33,13 +33,7 @@ const SignIn = () => {
             
         }, 4490)
       } else {
-        setReload(true)
-          setTimeout(() => {
-            router.replace('/home');
-            
-        }, 4490)
-        
-    }
+      }
     }
   };
   const othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7] rounded-md p-3 text-background-red flex flex-row items-center rounded-full border border-2"
@@ -78,7 +72,7 @@ const SignIn = () => {
           <View className="items-end">
           <View className="  flex-row mt-4">
             <Text className="text-sm text-beige font-plight">Forgot password?  </Text>
-            <Link href="/sign-up" className="text-sm font-psemibold text-beige underline">Reset</Link>
+            <Link href="/new-password" className="text-sm font-psemibold text-beige underline">Reset</Link>
           </View>
           </View>
 

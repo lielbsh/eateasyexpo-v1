@@ -24,10 +24,11 @@ const Recipes = () => {
   
   ];
   return (
-    <SafeAreaView className=" h-full"  edges={['top', 'left', 'right']}>
+    <SafeAreaView className="h-full"  edges={['top', 'left', 'right']}>
       
       <Header 
       color={"#fff5dc"}/>
+
       <View className="items-center " style={{backgroundColor:'rgba(255, 254, 252,0)'}}>
       <Text className="text-3xl font-psemibold color-offwhite ">Recipes Library</Text>
         <Text className="text-1xl font-psemibold color-white ">Your collection of favorite recipes</Text>
@@ -36,8 +37,8 @@ const Recipes = () => {
       <ScrollView>
         <View className="flex-row flex-wrap">
           {items.map((item) => (
-            <View className="w-1/2 p-3 h-[220px]">
-              <LibraryCard let inpurtext="bg-background-beige rounded-[10%]" item={item}/>
+            <View className="w-1/2 p-3 h-[220px]" key={item.id}>
+              <LibraryCard let inpurtext="bg-background-beige" item={item}/>
               <DeleteButton handlePress={() => router.push("/sign-up")}activeOpacity={0.7} contaniorstyles="absolute w-[19%] h-[13%] top-[10%] right-[8%]" size={25} color="#F1684B"/>
             </View>
           ))}

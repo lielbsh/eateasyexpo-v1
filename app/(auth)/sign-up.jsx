@@ -1,33 +1,54 @@
 import { View, Text, ScrollView, Alert, Image,TouchableOpacity } from "react-native";
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Link, Redirect } from "expo-router";
+import { Link, Redirect, router } from "expo-router";
 import { images } from "../../constants";
 import FormField from "../../components/custom/FormField";
 import CustomButton from "../../components/custom/CustomButton";
 import { Button, ImageBackground } from "react-native-web";
 import { useNavigationGuard } from "../../components/navigation/navigationGuard";
-import {sighUpReq} from "../../scripts/regesterScript/sign-up"
+import {signUpReq} from "../../scripts/regesterScript/sign-up"
+import { useDataGuard } from '../../components/data/globaldata.jsx';
 
 
-import {useDataGuard} from "../../components/data/globaldata"
+
 const SignUp = () => {
+  const { user,updateData,resetData } = useDataGuard();
   const { access,allowAccess } = useNavigationGuard();
+  
 
-
-  const {user,updatData,resetData}=useDataGuard()
   const [form, setForm]  = useState({
     username: '',
     email: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
 
   const submit = async () => {
+    setIsSubmitting(true)
     if (form.username === "" || form.email === "" ) {
       Alert.alert("Oops!", "Please fill in all fields");
+      
     } else {
-      // Handle sign-up logic
+      const result= await signUpReq(form,updateData)
+      setMessage(result)
+      if (result=='Contuning to verify email.'){
+        allowAccess("canAccessVerify")
+        updateData("username",form.username)
+        updateData("email",form.email)
+        updateData("action","create user")
+        setTimeout(() => {
+          router.push('/verify');
+          
+        }, 2000)
+      }else{
+        setTimeout(() => {
+          setIsSubmitting(false)
+          setMessage("")
+        }, 2000)
+        
+      }     
     }
   };
   const othercontainorStyles="bg-background-beige border-burgundy opacity-[0.7] rounded-md p-3 text-background-red flex flex-row items-center rounded-full border border-2"
@@ -85,16 +106,11 @@ const SignUp = () => {
           </View>
         </View>
         </View>
-        <Link href="/verify" className="text-sm font-psemibold text-white">Sgn in</Link>
-        <TouchableOpacity
-          onPress={() => {
-            allowAccess("canAccessVerify")
-          }}
-          activeOpacity={0.7}
-          className="bg-secondary rounded-3xl min-h-[40px] flex flex-row justify-center items-center 
-          mt-[20px] items-center w-[100px] border  border-burgundy border-2 bg-background-beige h-[50px]"
-
-        ></TouchableOpacity>
+        <View className="items-center mt-[30px]">
+          <Text className="text-sm font-psemibold text-white">
+            {message}
+          </Text >
+        </View>
       </ScrollView>
       <Image source={require('../../assets/images/background.png')}  className="absolute w-[500px] h-[500px] top-[450px] left-[50px]" style={{ opacity: 0.5, zIndex: -1 }}
       />

@@ -25,7 +25,7 @@ const CartItem = ({ item, isAtHome, onToggle, onDelete }) => {
               borderBottomLeftRadius: 20,
             }}
           >
-            <Ionicons name="trash" size={26} color="red" />
+            <Ionicons name="trash" size={26} color="#ffffff" />
           </TouchableOpacity>
         </View>
       )}

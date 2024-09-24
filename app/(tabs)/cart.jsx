@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, Animated, TouchableOpacity, SafeAreaView, Modal, Image } from 'react-native';
-import Header from '../../components/custom/Header'; 
-import CustomSearchBar from '../../components/custom/CustomSearchBar'; 
-import { icons } from '../../constants'; 
+import Header from '../../components/custom/Header';  
 import ConfirmationModal from '../../components/ConfirmationModal';
 import { toBuyList as initialToBuyList, atHomeList as initialAtHomeList } from '../../scripts/convertToFood';
 import CartItem from '../../components/custom/CartItem'; // Import the new CartItem component
 import FloatingActionButton from '../../components/custom/FloatingActionButton';
 import backgroundImage from '../../assets/images/background4.png';
+import SearchModal from '../../components/custom/SearchModal';
+
 
 
 const Cart = () => {
@@ -84,22 +84,25 @@ const Cart = () => {
   };
 
   return (
-    <SafeAreaView className="bg-background-beige flex-1 "  edges={['top', 'left', 'right']}>
+    <SafeAreaView className="h-full"  edges={['top', 'left', 'right']}>
+      
+      {/* Header Section */}
       <Header
-      color={"#fff5dc"} />
-      <View className="p-4 flex-1">
-        <Text className="text-2xl font-psemibold mb-[10px]">your cart</Text>
+      color={"#fff5dc"}/>
 
-        {/* Modal for search functionality */}
-        <Modal visible={searchMode} transparent={true} animationType="fade">
-          <View className="flex-1 p-4 bg-background-beige opacity-95 mt-[40px]">
-            <TouchableOpacity onPress={toggleSearchMode}>
-              <Image source={icons.logout} className="w-10 h-9" />
-            </TouchableOpacity>
-            <CustomSearchBar />
-          </View>
-        </Modal>
-        
+      {/* Title Section */}
+      <View className="items-center " style={{backgroundColor:'rgba(255, 254, 252,0)'}}>
+        <Text className="text-3xl font-psemibold color-offwhite ">your cart</Text>
+      </View>
+
+      {/* Modal for search functionality */}
+      <SearchModal
+        _searchMode={searchMode}
+        _toggleSearchMode={toggleSearchMode}
+        _title={'Search for food item'}
+      />
+
+      <View className="flex-1 p-4">
         {/* FlatList to display combined grocery items */}
         <FlatList
           data={combinedList}
@@ -115,13 +118,6 @@ const Cart = () => {
         />
 
         {/* Floating Action (+) Button for search */}
-        {/* <View className="absolute top-3 right-7">
-          <TouchableOpacity onPress={toggleSearchMode}>
-            <Animated.View style={[animatedStyle, {backgroundColor:"#b90000", borderRadius: 50, padding: 10 }]}>
-              <Feather name="plus" size={24} color="white" />
-            </Animated.View>
-          </TouchableOpacity>
-        </View> */}
         <View className="absolute bottom-15 right-5">
         <FloatingActionButton 
           animatedStyle={animatedStyle} 
@@ -138,6 +134,7 @@ const Cart = () => {
           title={'Are you sure you want to delete this item?'}
         />
       </View>
+      
       <View  className='absolute h-[full] w-[full] top-[0px] left-0 ' style={{ backgroundColor:"#F1684B",zIndex:-2}}>
       <Image source={backgroundImage} className=' h-[full] w-[full] top-[0px] left-0 ' style={{ opacity:0.7,zIndex:-1}}/>
       </View>

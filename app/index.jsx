@@ -36,7 +36,7 @@ export default function Index() {
         {/* Register Button */}
         <TouchableOpacity
           className="bg-primary mt-8 px-6 py-3 rounded-full border border-burgundy border-2 bg-background-beige"
-          onPress={() => router.push("/recipes")} // Navigate to register screen
+          onPress={() => router.push("/sign-up")} // Navigate to register screen
         >
           <Text className="color-burgundy font-bold text-lg">Create Account</Text>
         </TouchableOpacity>
@@ -46,7 +46,7 @@ export default function Index() {
           className="mt-4"
           // onPress={() => router.push("/sign-in")}
           onPress={() => {
-            router.push('/sign-in');
+            router.push('/home');
           }} // Navigate to login screen
         >
           <View className="flex-row">

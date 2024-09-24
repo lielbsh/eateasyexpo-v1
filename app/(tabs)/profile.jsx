@@ -12,9 +12,9 @@ const Profile = () => {
     value:'every week'
   })
   const [edit,setEdit]=useState(false)
-  const updatedataoptions=[{key:'every day'}
-  ,{key:'every week'},
-  {key:'every month'}]
+  const updatedataoptions=[{key:4, name:'every day'}
+  ,{key:5, name:'every week'},
+  {key:6, name:'every month'}]
   const [user,setuser]=useState({
     email:"assaf.assa@gmail.com",
     username:"Assaf"
@@ -105,7 +105,20 @@ const Profile = () => {
            <Text className="font-psemibold text-[20px]">your information:</Text>
 
           {/* //chainging email and username component */}
-          <ChangeInformation user={user} setuser={setuser}></ChangeInformation> 
+           
+          <View>
+         
+            <View className="bg-background-offwhitesheer h-[80px] space-y-[20px] rounded-[5px] p-[5px]" >
+              <View className="flex-row space-x-[60px] mt-[5px] ">
+                <Text className="font-psemibold text-[15px] ml-[10px]">email:</Text>
+                <Text className="font-regular text-[15px]">{user.email}</Text>
+              </View>
+              <View className="flex-row space-x-[30px]">
+                <Text className="font-psemibold text-[15px] ml-[10px]">username:</Text>
+                <Text className="font-regular text-[15px] ">{user.username}</Text>
+              </View>
+            </View>
+        </View>
 
           {/* //choosing freqency of updating data to cloud */}
           <View className=" mt-[25px] h-[40px] justify-center">
@@ -142,7 +155,7 @@ const Profile = () => {
             <View className="flex-row justify-end mr-[10px] ">
                  <TouchableOpacity
                 onPress={()=>{
-                  handlechangeupdatedata(option.key)
+                  handlechangeupdatedata(option.name)
                 }}
                 activeOpacity={0.3}
                 className="bg-secondary  justify-center 
@@ -151,7 +164,7 @@ const Profile = () => {
               >
                 <View className="flex-row  ml-[10px]">
                   
-                  <Text className="font-psemibold text-[15px] color-shadow mr-[10px]">{option.key}</Text>
+                  <Text className="font-psemibold text-[15px] color-shadow mr-[10px]">{option.name}</Text>
                 </View>
               </TouchableOpacity>
             </View>
