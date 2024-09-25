@@ -35,6 +35,7 @@ module.exports = {
         pextrabold: ["Poppins-ExtraBold", "sans-serif"],
         pblack: ["Poppins-Black", "sans-serif"],
         cursive: ["Pacifico",'cursive'],
+        dancing: ['DancingScript', 'cursive'],
       },
     },
   },

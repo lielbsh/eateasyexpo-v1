@@ -21,6 +21,7 @@ export default function App() {
     "Poppins-SemiBold": require("../assets/fonts/Poppins-SemiBold.ttf"),
     "Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
     "Pacifico-Regular": require("../assets/fonts/Pacifico-Regular.ttf"),
+    "DancingScript": require("../assets/fonts/DancingScript-VariableFont_wght.ttf"),
   });
 
   useEffect(() => {

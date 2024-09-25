@@ -102,11 +102,11 @@ const Profile = () => {
 
         <ScrollView className="flex-1 mx-[20px] mt-[10px] ">
           
-           <Text className="font-psemibold text-[20px]">your information:</Text>
+           <Text  key= {6} className="font-psemibold text-[20px]">your information:</Text>
 
           {/* //chainging email and username component */}
            
-          <View>
+          <View key= {7}>
          
             <View className="bg-background-offwhitesheer h-[80px] space-y-[20px] rounded-[5px] p-[5px]" >
               <View className="flex-row space-x-[60px] mt-[5px] ">
@@ -121,7 +121,7 @@ const Profile = () => {
         </View>
 
           {/* //choosing freqency of updating data to cloud */}
-          <View className=" mt-[25px] h-[40px] justify-center">
+          <View  key= {8} className=" mt-[25px] h-[40px] justify-center">
             <View className="flex-row justify-between ">
             <Text className="font-psemibold text-[15px] ml-[15px] mt-[10px]">update your data on cloud</Text>
                 <TouchableOpacity
@@ -174,7 +174,7 @@ const Profile = () => {
         )}
 
         
-          {settingactions.map(action=>(<View className=" h-[60px]">
+          {settingactions.map(action=>(<View className=" h-[60px]" key={action.key}>
               <TouchableOpacity
               key={action.key}
               onPress={()=>{handlelactions(action)}}
