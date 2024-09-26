@@ -23,7 +23,7 @@ export default function Index() {
         <View className="flex-row h-[80px] mb-2 ">
           <Text className="color-beige text-2xl font-bold text-primary mt-8 ">Welcome to </Text>
           <Text className="color-offwhite text-5xl font-bold mt-[20px] text-primary">Eat</Text>
-          <Text className="color-offwhite underline-[2px] text-5xl font-bold font-cursive leading-[80px]">Easy</Text>
+          <Text className="color-offwhite underline-[2px] text-5xl font-pbold font-dancing leading-[80px]">Easy</Text>
           <Image source={require('../assets/images/logo1.png')}  className="w-[50px] h-[50px] mt-[20px]" />
         </View>
 
