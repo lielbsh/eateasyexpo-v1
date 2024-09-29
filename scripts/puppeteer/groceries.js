@@ -1,10 +1,10 @@
-import axios from 'axios';
+import api from '../axioscookie';
 import { stringFormat } from './searchScript';
 
 export async function groceries(dataToSend){
     dataToSend.stringInput= stringFormat(dataToSend.stringInput)
     console.log(dataToSend.stringInput)
-    return axios.post('http://localhost:3000/groceries/searchgroceries', dataToSend, {
+    return api.post('/groceries/searchgroceries', dataToSend, {
     headers: {
         'Content-Type': 'application/json'
     },

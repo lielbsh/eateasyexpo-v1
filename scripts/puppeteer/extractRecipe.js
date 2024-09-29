@@ -1,8 +1,8 @@
-import axios from 'axios';
+import api from '../axioscookie';
 
 export async function extractRecipe(dataToSend){
     console.log(dataToSend.recipeURL)
-    return axios.post('http://localhost:3000/search/extractrecipes', dataToSend, {
+    return api.post('/search/extractrecipes', dataToSend, {
     headers: {
         'Content-Type': 'application/json'
     },

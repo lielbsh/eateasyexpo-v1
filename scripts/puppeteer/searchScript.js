@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../axioscookie';
 
 export const stringFormat = (originalString) => {
   let formattedString = originalString.replace(/ /g, "+");
@@ -8,7 +8,7 @@ export const stringFormat = (originalString) => {
 export async function searchScript(dataToSend){
   dataToSend.stringInput = stringFormat(dataToSend.stringInput)
   console.log(dataToSend.stringInput)
-  return axios.post('http://localhost:3000/search/searchrecipes', dataToSend, {
+  return api.post('/search/searchrecipes', dataToSend, {
   headers: {
       'Content-Type': 'application/json'
   },
