@@ -1,11 +1,10 @@
 
-import axios from 'axios';
+import api from "../axioscookie";
 
 
-//https://eateasyserver.onrender.com
 // Use axios to send a POST request to the server
 export async function sighOutReq(dataToSend,resetData){
-    return axios.post('http://localhost:3000/recipes/logoutfromuser', dataToSend, {
+    return api.post('/recipes/logoutfromuser', dataToSend, {
     headers: {
         'Content-Type': 'application/json'
     },

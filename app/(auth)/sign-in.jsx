@@ -27,11 +27,11 @@ const SignIn = () => {
     } else {
       const result= await sighInReq(form,updateData)
       if (result == 'login sucessful. Retrieving your data') {
-          setReload(true)
-          setTimeout(() => {
-            router.replace('/home');
+          // setReload(true)
+        //   setTimeout(() => {
+        //     router.replace('/home');
             
-        }, 4490)
+        // }, 4490)
       } else {
       }
     }

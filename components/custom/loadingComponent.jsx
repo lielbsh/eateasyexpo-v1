@@ -1,5 +1,5 @@
 import React, { useEffect, useRef ,useState} from 'react';
-import { View, Animated, Easing } from 'react-native';
+import { View, Animated, Easing,Text,Image } from 'react-native';
 
 const LoadinComponent = () => {
   

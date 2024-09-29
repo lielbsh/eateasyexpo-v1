@@ -5,9 +5,12 @@ import { useNavigation } from "@react-navigation/native";
 import { images } from "../constants";
 import { StatusBar } from "expo-status-bar";
 import { Link, router } from "expo-router";
+import {searchScript} from "../scripts/puppeteer/searchScript"
+import StartComponent from "../components/custom/startComponent"
 
 
 export default function Index() {
+  const [initialpage,setinItialPage]=useState(false)
   
   
 
@@ -15,7 +18,7 @@ export default function Index() {
 
   return (
     <SafeAreaView className="bg-background-red h-full">
-      
+       <StartComponent initialpage={initialpage}></StartComponent> 
       <View className="flex-1 justify-center items-center px-4" >
 
         {/* App Logo */}
@@ -23,7 +26,7 @@ export default function Index() {
         <View className="flex-row h-[80px] mb-2 ">
           <Text className="color-beige text-2xl font-bold text-primary mt-8 ">Welcome to </Text>
           <Text className="color-offwhite text-5xl font-bold mt-[20px] text-primary">Eat</Text>
-          <Text className="color-offwhite underline-[2px] text-5xl font-pbold font-dancing leading-[80px]">Easy</Text>
+          <Text className="color-offwhite underline-[2px] text-5xl font-pbold leading-[80px]" style={{fontFamily:'Pacifico_400Regular'}}>Easy</Text>
           <Image source={require('../assets/images/logo1.png')}  className="w-[50px] h-[50px] mt-[20px]" />
         </View>
 
@@ -36,7 +39,7 @@ export default function Index() {
         {/* Register Button */}
         <TouchableOpacity
           className="bg-primary mt-8 px-6 py-3 rounded-full border border-burgundy border-2 bg-background-beige"
-          onPress={() => router.push("/sign-up")} // Navigate to register screen
+          onPress={() => searchScript({stringInput:"vanilla cake"})} // Navigate to register screen
         >
           <Text className="color-burgundy font-bold text-lg">Create Account</Text>
         </TouchableOpacity>
@@ -46,7 +49,7 @@ export default function Index() {
           className="mt-4"
           // onPress={() => router.push("/sign-in")}
           onPress={() => {
-            router.push('/home');
+            router.push('/sign-in');
           }} // Navigate to login screen
         >
           <View className="flex-row">

@@ -6,9 +6,9 @@ export const stringFormat = (originalString) => {
 }
 
 export async function searchScript(dataToSend){
-  dataToSend.stringInput= stringFormat(dataToSend.stringInput)
+  dataToSend.stringInput = stringFormat(dataToSend.stringInput)
   console.log(dataToSend.stringInput)
-  axios.post('http://localhost:3000/search/searchrecipes', dataToSend, {
+  return axios.post('http://localhost:3000/search/searchrecipes', dataToSend, {
   headers: {
       'Content-Type': 'application/json'
   },
@@ -16,7 +16,7 @@ export async function searchScript(dataToSend){
   })
   .then(res => {
       let {searchResults}= res.data
-      // if (searchResults) 
+      console.log(res.data)
       console.log(searchResults)
       return(searchResults)  
   })
@@ -25,3 +25,6 @@ export async function searchScript(dataToSend){
   });
 
 }
+
+
+

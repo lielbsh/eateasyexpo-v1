@@ -17,7 +17,7 @@ const CartItem = ({ item, isAtHome, onToggle, onDelete }) => {
         <View className="justify-between items-center">
           <TouchableOpacity
             onPress={() => onDelete(item.id)}
-            className="bg-red-600 justify-center items-center w-16"
+            className="justify-center items-center w-16"
             style={{
               height: '100%',
               justifyContent: 'center',
@@ -36,7 +36,7 @@ const CartItem = ({ item, isAtHome, onToggle, onDelete }) => {
           opacity: isAtHome ? 0.5 : 1,
           transform: [{ translateY: animatedValue }],
         }}
-        className="flex-row justify-between items-center p-3 mb-4 rounded-[20px] shadow-md"
+        className="flex-row justify-between items-center p-3 mb-0.5 shadow-md"
       >
         <Text className={`text-lg font-semibold ${isAtHome ? 'text-gray-600' : 'text-black'}`}>
           {item.name}

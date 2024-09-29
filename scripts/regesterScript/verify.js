@@ -1,5 +1,5 @@
 
-import axios from 'axios';
+import api from "../axioscookie";
 
 
 // Use axios to send a POST request to the server
@@ -7,7 +7,7 @@ import axios from 'axios';
 export async function VerifyCodeReq(dataToSend,updateData){
     
     dataToSend.action="create user"
-    return axios.post('http://localhost:3000/signup/checkcode', dataToSend, {
+    return api.post('/signup/checkcode', dataToSend, {
     headers: {
         'Content-Type': 'application/json'
     },
@@ -24,7 +24,7 @@ export async function VerifyCodeReq(dataToSend,updateData){
 }
 
 export async function SetAccountReq(dataToSend,updateData){
-    return axios.post('http://localhost:3000/signup/setaccount', dataToSend, {
+    return api.post('/signup/setaccount', dataToSend, {
     headers: {
         'Content-Type': 'application/json'
     },

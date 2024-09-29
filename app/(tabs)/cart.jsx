@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, Animated, TouchableOpacity, SafeAreaView, Modal, Image } from 'react-native';
-import Header from '../../components/custom/Header';  
-import ConfirmationModal from '../../components/ConfirmationModal';
-import { toBuyList as initialToBuyList, atHomeList as initialAtHomeList } from '../../scripts/convertToFood';
-import CartItem from '../../components/custom/CartItem'; // Import the new CartItem component
-import FloatingActionButton from '../../components/custom/FloatingActionButton';
-import backgroundImage from '../../assets/images/background4.png';
-import SearchModal from '../../components/custom/SearchModal';
-
-
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  Animated,
+  TouchableOpacity,
+  SafeAreaView,
+  Modal,
+  Image,
+} from "react-native";
+import Header from "../../components/custom/Header";
+import ConfirmationModal from "../../components/ConfirmationModal";
+import {
+  toBuyList as initialToBuyList,
+  atHomeList as initialAtHomeList,
+} from "../../scripts/convertToFood";
+import CartItem from "../../components/custom/CartItem"; // Import the new CartItem component
+import FloatingActionButton from "../../components/custom/FloatingActionButton";
+import backgroundImage from "../../assets/images/background4.png";
+import SearchGroceryModal from "../../components/custom/SearchGroceryModal";
+import { useDataGuard } from "../../components/data/globaldata.jsx";
 
 const Cart = () => {
+  const { user, updateData, resetData } = useDataGuard();
   // Initial state for grocery lists and UI states
   const [toBuyList, setToBuyList] = useState(initialToBuyList);
   const [atHomeList, setAtHomeList] = useState(initialAtHomeList);
@@ -18,7 +30,7 @@ const Cart = () => {
   const [animatedScale] = useState(new Animated.Value(1));
   const [itemToDelete, setItemToDelete] = useState(null);
   const [confirmationVisible, setConfirmationVisible] = useState(false);
-  
+
   // Function to toggle item status between "to buy" and "at home"
   const toggleItemStatus = (id, animatedValue) => {
     const itemIndex = toBuyList.findIndex((item) => item.id === id);
@@ -77,32 +89,39 @@ const Cart = () => {
   const confirmDelete = () => {
     if (itemToDelete !== null) {
       // Remove item from both lists
-      setAtHomeList((prevListData) => prevListData.filter((item) => item.id !== itemToDelete));
-      setToBuyList((prevListData) => prevListData.filter((item) => item.id !== itemToDelete));
+      setAtHomeList((prevListData) =>
+        prevListData.filter((item) => item.id !== itemToDelete)
+      );
+      setToBuyList((prevListData) =>
+        prevListData.filter((item) => item.id !== itemToDelete)
+      );
     }
     setConfirmationVisible(false);
   };
 
   return (
-    <SafeAreaView className="h-full"  edges={['top', 'left', 'right']}>
-      
+    <SafeAreaView className="h-full" edges={["top", "left", "right"]}>
       {/* Header Section */}
-      <Header
-      color={"#fff5dc"}/>
+      <Header color={"#fff5dc"} />
 
       {/* Title Section */}
-      <View className="items-center " style={{backgroundColor:'rgba(255, 254, 252,0)'}}>
-        <Text className="text-3xl font-psemibold color-offwhite ">your cart</Text>
+      <View
+        className="items-center "
+        style={{ backgroundColor: "rgba(255, 254, 252,0)" }}
+      >
+        <Text className="text-3xl font-psemibold color-offwhite ">
+          your cart
+        </Text>
       </View>
 
       {/* Modal for search functionality */}
-      <SearchModal
+      <SearchGroceryModal
         _searchMode={searchMode}
         _toggleSearchMode={toggleSearchMode}
-        _title={'Search for food item'}
+        _title={"add new item"}
       />
 
-      <View className="flex-1 p-4">
+      <View className="flex-1 p-1">
         {/* FlatList to display combined grocery items */}
         <FlatList
           data={combinedList}
@@ -118,29 +137,35 @@ const Cart = () => {
         />
 
         {/* Floating Action (+) Button for search */}
-        <View className="absolute bottom-15 right-5">
-        <FloatingActionButton 
-          animatedStyle={animatedStyle} 
-          onPress={toggleSearchMode}
-          backgroundColor="#b90000" 
-        />
-      </View>
-        
+        <View className="absolute bottom-5 right-5">
+          <FloatingActionButton
+            animatedStyle={animatedStyle}
+            onPress={toggleSearchMode}
+            backgroundColor="#b90000"
+          />
+        </View>
+
         {/* Confirmation modal for item deletion */}
         <ConfirmationModal
           visible={confirmationVisible}
           onClose={() => setConfirmationVisible(false)}
           onConfirm={confirmDelete}
-          title={'Are you sure you want to delete this item?'}
+          title={"Are you sure you want to delete this item?"}
         />
       </View>
-      
-      <View  className='absolute h-[full] w-[full] top-[0px] left-0 ' style={{ backgroundColor:"#F1684B",zIndex:-2}}>
-      <Image source={backgroundImage} className=' h-[full] w-[full] top-[0px] left-0 ' style={{ opacity:0.7,zIndex:-1}}/>
+
+      <View
+        className="absolute h-[full] w-[full] top-[0px] left-0 "
+        style={{ backgroundColor: "#F1684B", zIndex: -2 }}
+      >
+        <Image
+          source={backgroundImage}
+          className=" h-[full] w-[full] top-[0px] left-0 "
+          style={{ opacity: 0.7, zIndex: -1 }}
+        />
       </View>
     </SafeAreaView>
   );
 };
 
 export default Cart;
-

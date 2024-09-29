@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState ,useEffect } from 'react';
-
+import { storeObject, getObject,removeData } from '../../scripts/data/asyncstorage';
+import { AppState } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const DataContext = createContext();
 
 // Custom hook to use the DataContext
@@ -15,8 +17,11 @@ export const DataProvider = ({ children }) => {
     email:'',
     changes:[],
     action:'',
+    login:'',
+    
 
   });
+  ///delete afterrrreegjfodfjeorejroejroejroejroejroejrorjeorjeorjeorjeorjeorjerojere
   useEffect(() => {
     console.log(user,'userupdated')
 
@@ -24,11 +29,71 @@ export const DataProvider = ({ children }) => {
       // Cleanup code (optional)
     };
   }, [user]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const savedUser = await getObject('userData');
+      if (savedUser) {
+        setUser(savedUser);
+      }
+      
+    };
+    const checkTokenExpiration = async () => {
+      let cookieString = await AsyncStorage.getItem('jwt'); // Retrieve the token and expiration
+      if (cookieString) {
+        let expiration = new Date (cookieString.split('Expires=')[1].split(';')[0]).getTime();
+        
+        const now = Date.now();
+  
+        // Assuming expiration is in milliseconds, compare current time with expiration
+        if (expiration && now < expiration) {
+          console.log('Token is valid');
+          // Continue with authenticated user flow
+          //fetchData()
+          updateData('login','loged In')
+        } else {
+          console.log('Token expired');
+          updateData('login','Not loged In')
+        }
+      } else {
+        console.log('No token data found');
+        updateData('login','Not loged In')
+      }
+    };
+  
+    const handleAppStateChange = (nextAppState) => {
+      if (nextAppState === 'active') {
+        checkTokenExpiration(); // Check when the app becomes active
+      }
+    };
+  
+    const subscription = AppState.addEventListener('change', handleAppStateChange);
+    checkTokenExpiration();
+    return () => {
+      subscription.remove(); // Clean up event listener
+    };
+  }, []);
+  
+  
+    // Save user data to AsyncStorage
+    useEffect(() => {
+      const saveData = async () => {
+        await storeObject('userData', user);
+        
+         // Store the updated user data
+      };
+      if (user.username!=''){
+        saveData()
+      }
+      ; // Call the save function when user state changes
+    }, [user]);
+
   const updateData = (dataname,newdata) => {
     setUser((prev) => ({
       ...prev,
       [dataname]: newdata, // Dynamically update the access state for the specific page
     }));
+    
   };
 
   const resetData = () => {
@@ -40,6 +105,7 @@ export const DataProvider = ({ children }) => {
         email:'',
         changes:[],
         action:'',
+        login:''
     
       });
   };
@@ -50,3 +116,27 @@ export const DataProvider = ({ children }) => {
     </DataContext.Provider>
   );
 };
+
+
+
+
+
+
+//   // Handle AppState changes
+//   useEffect(() => {
+//     const handleAppStateChange = (nextAppState) => {
+//       if (nextAppState === 'active') {
+//         fetchData(); // Fetch data again when the app comes back to the foreground
+//       } else if (nextAppState === 'inactive' || nextAppState === 'background') {
+//         saveData(); // Save data when the app goes to the background
+//       }
+//     };
+
+//     const subscription = AppState.addEventListener('change', handleAppStateChange);
+
+//     return () => {
+//       subscription.remove(); // Clean up the event listener
+//     };
+//   }, [user]); // Rerun when the user state changes
+
+

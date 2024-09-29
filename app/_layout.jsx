@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+
 import React, { useEffect } from "react";
 import { Link, Stack, SplashScreen } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
+import { Pacifico_400Regular } from "@expo-google-fonts/pacifico";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationProviderGaurd } from '../components/navigation/navigationGuard';
 import { DataProvider } from '../components/data/globaldata';
 
-SplashScreen.preventAutoHideAsync();
+
 
 export default function App() {
   const [fontsLoaded, error] = useFonts({
@@ -20,7 +21,7 @@ export default function App() {
     "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
     "Poppins-SemiBold": require("../assets/fonts/Poppins-SemiBold.ttf"),
     "Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
-    "Pacifico-Regular": require("../assets/fonts/Pacifico-Regular.ttf"),
+    Pacifico_400Regular,  // Use the Google Pacifico font
     "DancingScript": require("../assets/fonts/DancingScript-VariableFont_wght.ttf"),
   });
 
@@ -29,29 +30,23 @@ export default function App() {
     if (fontsLoaded) {
       SplashScreen.hideAsync();
     }
-    }, [fontsLoaded, error]);
+  }, [fontsLoaded, error]);
 
-    if (!fontsLoaded) {
-      return null;
-    }
-
-    if (!fontsLoaded && !error) {
-      return null;
-    }
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <GestureHandlerRootView>
       <DataProvider>
         <NavigationProviderGaurd>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false}}  />
-          <Stack.Screen name="(auth)" options={{ headerShown: false, }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false,}} />
-        </Stack>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
         </NavigationProviderGaurd>
       </DataProvider>
     </GestureHandlerRootView>
   );
 }
-
-
