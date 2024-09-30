@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState ,useEffect } from 'react';
 import { storeObject, getObject,removeData } from '../../scripts/data/asyncstorage';
 import { AppState } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {updaterecipescloud,updategroceriesandcartcloud} from "../../scripts/regesterScript/cloud"
 const DataContext = createContext();
 
 // Custom hook to use the DataContext
@@ -18,12 +19,14 @@ export const DataProvider = ({ children }) => {
     changes:[],
     action:'',
     login:'',
+    updateoption:{name:'every week',
+      value:604800000}
     
 
   });
   ///delete afterrrreegjfodfjeorejroejroejroejroejroejrorjeorjeorjeorjeorjeorjerojere
   useEffect(() => {
-    console.log(user,'userupdated')
+    //console.log(user,'userupdated')
 
     return () => {
       // Cleanup code (optional)
@@ -35,6 +38,7 @@ export const DataProvider = ({ children }) => {
       const savedUser = await getObject('userData');
       if (savedUser) {
         setUser(savedUser);
+        updateData('login','loged In')
       }
       
     };
@@ -49,8 +53,8 @@ export const DataProvider = ({ children }) => {
         if (expiration && now < expiration) {
           console.log('Token is valid');
           // Continue with authenticated user flow
-          //fetchData()
-          updateData('login','loged In')
+          fetchData()
+          
         } else {
           console.log('Token expired');
           updateData('login','Not loged In')
@@ -82,11 +86,29 @@ export const DataProvider = ({ children }) => {
         
          // Store the updated user data
       };
+      const storedataoncloud= async()=>{
+        let lastUpdateDate=await getObject('lastUpdate')
+        const now=Date.now()
+        if (now>(lastUpdateDate+user.updateoption.value)){
+          await updaterecipescloud(user.changes)
+          updateData('changes',[])
+          await updategroceriesandcartcloud(user.groceries,user.cart)
+          await storeObject('lastUpdate',now)
+        }
+      }
       if (user.username!=''){
-        saveData()
+        const updateDataFlow = async () => {
+          await storedataoncloud();
+          await saveData();
+        };
+    
+        // Execute the async update flow
+        updateDataFlow();
+        
       }
       ; // Call the save function when user state changes
     }, [user]);
+    
 
   const updateData = (dataname,newdata) => {
     setUser((prev) => ({
@@ -98,14 +120,18 @@ export const DataProvider = ({ children }) => {
 
   const resetData = () => {
     setUser({
-        recipes:[],
-        groceries:[],
-        cart:[],
-        username:'',
-        email:'',
-        changes:[],
-        action:'',
-        login:''
+      recipes:[],
+      groceries:[],
+      cart:[],
+      username:'',
+      email:'',
+      changes:[],
+      action:'',
+      login:'',
+      updateoption:{name:'every week',
+        value:604800000}
+      
+  
     
       });
   };

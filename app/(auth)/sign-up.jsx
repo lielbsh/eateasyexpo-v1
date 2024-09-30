@@ -57,7 +57,7 @@ const SignUp = () => {
     <SafeAreaView className="bg-background-red h-full">
       <View className="flex-row h-[80px] mt-[30px] ml-[20px]">
           <Text className="color-offwhite text-5xl font-bold mt-[20px] text-primary">Eat</Text>
-          <Text className="color-offwhite underline-[2px] text-5xl font-bold font-cursive leading-[80px]">Easy</Text>
+          <Text className="color-offwhite underline-[2px] text-5xl font-bold leading-[80px]" style={{fontFamily:'Pacifico_400Regular'}}>Easy</Text>
           <Image source={require('../../assets/images/logo1.png')}  className="w-[50px] h-[50px] mt-[20px]" />
         </View>
         

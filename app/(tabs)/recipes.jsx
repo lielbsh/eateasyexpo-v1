@@ -2,53 +2,43 @@ import { View, Text, Image, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import backgroundImage from "../../assets/images/background5.png";
+import { icons, images } from "../../constants";
 import Header from "../../components/custom/Header";
 import DeleteButton from "../../components/custom/deleteButton";
 import LibraryCard from "../../components/custom/LibraryCard";
 import { router } from "expo-router";
 import RecipeModal from "../../components/custom/RecipeModal";
 import { extractRecipe } from "../../scripts/puppeteer/extractRecipe";
+import { useDataGuard } from "../../components/data/globaldata.jsx";
 
 const Recipes = () => {
-  const items = [
-    {
-      href: "https://www.allrecipes.com/recipe/231616/vegan-basic-vanilla-cake/",
-      photosrc:
-        "https://www.allrecipes.com/thmb/ZyUS-Li_2K5gprFbu04cjhn5doc=/282x188/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/1029279-fb5de87e8bd44a44be03e09816a75972.jpg",
-      title: "Vegan Basic Vanilla Cake",
-    },
-    {
-      href: "https://www.allrecipes.com/recipe/277883/homemade-vanilla-cake/",
-      photosrc:
-        "https://www.allrecipes.com/thmb/pw7RlGO-yCIPQJem_9zwEpp7G7I=/282x188/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/7656824-db36f7e92ae042f7bcae6b71b859fbd6.jpg",
-      title: "Homemade Vanilla Cake",
-    },
-    {
-      href: "https://www.allrecipes.com/recipe/277000/easy-vanilla-cake/",
-      photosrc:
-        "https://www.allrecipes.com/thmb/-DJuyYp-QXAz1Z33oNWnP1b3mkU=/282x188/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/9224625_EasyVanillaCake4x3-bf9a73c9f6024e9286d96e8f0b59d35d.jpg",
-      title: "Easy Vanilla Cake",
-    },
-    {
-      href: "https://www.allrecipes.com/recipe/8386501/french-vanilla-cake-with-french-vanilla-buttercream-frosting/",
-      photosrc:
-        "https://www.allrecipes.com/thmb/xl51p5XkbQkw_PVAVuOQspiNBoU=/282x188/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/1651435756DSC_1944202-2000-a66db12f740f4fdf892bc435102403d3.jpg",
-      title: "French Vanilla Cake with French Vanilla Buttercream Frosting",
-    },
-  ];
+  const { user, updateData, resetData } = useDataGuard();
   const [displayRecipe, setDisplayRecipe] = useState(false);
   const [openRecipe, setOpenRecipe] = useState();
+  const [disabledButton, setdisabledButton] = useState(false);
 
   const [recipeData, setRecipeData] = useState();
   const handelState = async (recipeUrl) => {
     console.log("URL:", recipeUrl);
     let recipe = await extractRecipe({ recipeURL: recipeUrl });
     setRecipeData(recipe);
+
+    setDisplayRecipe(true);
   };
 
   // Function to toggle search mode
   const togglehRecipeMode = () => {
     setDisplayRecipe(!displayRecipe);
+    setdisabledButton(false);
+  };
+
+  // Helper function to remove saved recipe
+  const deletRecipeHandler = (recipeToDelete) => {
+    const updatedRecipes = user.recipes.filter(
+      (recipe) => recipe !== recipeToDelete
+    );
+    updateData("recipes", updatedRecipes);
+    console.log("item removed");
   };
 
   return (
@@ -74,21 +64,25 @@ const Recipes = () => {
         </Text>
       </View>
 
-      <ScrollView>
+      <ScrollView style={{ zIndex: 1 }}>
         <View className="flex-row flex-wrap">
-          {items.map((item) => (
+          {user.recipes.map((item) => (
             <View className="w-1/2 p-3 h-[220px]" key={item.title}>
               <LibraryCard
                 inputText="bg-background-beige"
                 item={item}
                 handelPress={() => {
-                  setOpenRecipe(item);
-                  setDisplayRecipe(true);
-                  handelState(item.href);
+                  if (!disabledButton) {
+                    setOpenRecipe(item);
+                    handelState(item.href);
+                    setdisabledButton(true);
+                  }
                 }}
               />
               <DeleteButton
-                handlePress={() => router.push("/sign-up")}
+                handlePress={() => {
+                  deletRecipeHandler(item);
+                }}
                 activeOpacity={0.7}
                 contaniorstyles="absolute w-[19%] h-[13%] top-[10%] right-[8%]"
                 size={25}
@@ -98,7 +92,13 @@ const Recipes = () => {
           ))}
         </View>
       </ScrollView>
-
+      {disabledButton && (
+        <Image
+          source={images.loading}
+          className="absolute top-[54%] left-[42.5%] h-[8%] w-[15%] "
+          style={{ zIndex: 2 }}
+        />
+      )}
       <View
         className="absolute h-[full] w-[full] top-[0px] left-0 "
         style={{ backgroundColor: "rgba(58, 86, 44,0.7)", zIndex: -2 }}

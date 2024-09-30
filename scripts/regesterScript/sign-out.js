@@ -4,7 +4,7 @@ import api from "../axioscookie";
 
 // Use axios to send a POST request to the server
 export async function sighOutReq(dataToSend,resetData){
-    return api.post('/recipes/logoutfromuser', dataToSend, {
+    return api.delete('/recipes/logoutfromuser', dataToSend, {
     headers: {
         'Content-Type': 'application/json'
     },

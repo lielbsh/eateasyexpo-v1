@@ -44,9 +44,6 @@ const Verify = () => {
                     setTimeout(() => {
                         setVerifyorPaswword("password")
                         setIsSubmitting(false)
-                        resetAccess()
-                        clearTimeout(timeoutId)
-                        router.replace("sign-in")
                       }, 1000)
                 }else if(result=='Not varified, try again') {
                     setTimeout(() => {
@@ -79,7 +76,9 @@ const Verify = () => {
                 setMessage(result2)
                 if (result2=='Varified,action completed.'){
                     setTimeout(() => {
-                        
+                        resetAccess()
+                        clearTimeout(timeoutId)
+                        router.replace("sign-in")
                         
                       }, 1000)
                 }else if(result2=='Something went wrong') {
@@ -100,7 +99,7 @@ const Verify = () => {
         <SafeAreaView className="bg-background-red h-full">
         <View className="flex-row h-[80px] mt-[30px] ml-[20px]">
             <Text className="color-offwhite text-5xl font-bold mt-[20px] text-primary">Eat</Text>
-            <Text className="color-offwhite underline-[2px] text-5xl font-bold font-cursive leading-[80px]">Easy</Text>
+            <Text className="color-offwhite underline-[2px] text-5xl font-bold leading-[80px]" style={{fontFamily:'Pacifico_400Regular'}}>Easy</Text>
             <Image source={require('../../assets/images/logo1.png')}  className="w-[50px] h-[50px] mt-[20px]" />
             </View>
             
@@ -111,10 +110,10 @@ const Verify = () => {
             <Text className="text-3xl font-semibold text-burgundy mt-10 font-psemibold">
                 Verify your account
             </Text>
-            <Text className="text-2xl font-semibold text-burgundy mt-10 font-psemibold">
+            <Text className="text-[20px] font-semibold text-burgundy mt-2 font-psemibold">
                 with code sent to your mail:
             </Text>
-            <Text className="text-2xl font-semibold text-burgundy mt-10 font-psemibold">
+            <Text className="text-[20px] font-semibold text-burgundy mt-2 font-psemibold">
                 {user.email}
             </Text>
             </View>

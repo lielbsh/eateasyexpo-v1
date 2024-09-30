@@ -1,5 +1,6 @@
 
 import api from '../axioscookie';
+import {storeObject} from '../data/asyncstorage' 
 
 export async function retreiveData(dataToSend,updateData){
     
@@ -18,6 +19,8 @@ export async function retreiveData(dataToSend,updateData){
         updateData('cart',usercopy.cart)
         updateData('username',usercopy.username)
         updateData('email',usercopy.email)
+        let today=Date.now()
+        storeObject('lastUpdate',today)
         
     })
     .catch(error => {
@@ -26,7 +29,7 @@ export async function retreiveData(dataToSend,updateData){
 
 }
 
-export function updaterecipescloud(changes,updateData){
+export async function updaterecipescloud(changes){
     api.post('/recipes/updatedata', {changes}, {
         headers: {
             'Content-Type': 'application/json'
@@ -34,7 +37,7 @@ export function updaterecipescloud(changes,updateData){
         withCredentials: true  // Ensure this is set to send cookies
         })
     .then(response => {
-        updateData('changes',[])
+        
         
     })
     .catch(error => {
@@ -42,7 +45,7 @@ export function updaterecipescloud(changes,updateData){
     });    
 }
 
-export function updategroceriesandcartcloud(groceries,cart,updateData){
+export async function updategroceriesandcartcloud(groceries,cart){
     api.post('/recipes/updategroceries', {groceries,cart}, {
         headers: {
             'Content-Type': 'application/json'

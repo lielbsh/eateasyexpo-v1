@@ -5,31 +5,60 @@ import FormField from "../../components/custom/FormField";
 import CustomButton from "../../components/custom/CustomButton";
 import ChangeInformation from "../../components/ChangeInformation"
 import Header from '../../components/custom/Header';
+import { useDataGuard } from '../../components/data/globaldata.jsx';
+import {sighOutReq} from '../../scripts/regesterScript/sign-out.js'
+import { router } from 'expo-router';
+import { removeData } from '../../scripts/data/asyncstorage.js';
+import { sendverifymail } from '../../scripts/regesterScript/sign-up.js';
+import { useNavigationGuard } from "../../components/navigation/navigationGuard";
+
 
 const Profile = () => {
+  const { access,allowAccess } = useNavigationGuard();
+  const { user,updateData,resetData } = useDataGuard();
   const [updatedataoption,setupdatedataoption]=useState({
-    change:true,
-    value:'every week'
+    change:false,
+    name:user.updateoption.name,
+    value:user.updateoption.value,
   })
   const [edit,setEdit]=useState(false)
-  const updatedataoptions=[{key:4, name:'every day'}
-  ,{key:5, name:'every week'},
-  {key:6, name:'every month'}]
-  const [user,setuser]=useState({
-    email:"assaf.assa@gmail.com",
-    username:"Assaf"
-  })
+  const updatedataoptions=[{key:4, name:'every day', value:86400000 }
+  ,{key:5, name:'every week',value:604800000},
+  {key:6, name:'every month',value:2592000000}]
+  
   
   const settingactions=[
     { key: 1,name:"Change your password",
-      handlefunction:()=>{console.log("Change your password")}
+      handlefunction:async()=>{
+        console.log("Change your password")
+        let email=user.email
+        let username=user.username
+        await sighOutReq({},resetData)
+        console.log(email,username)
+        removeData('jwt')
+        updateData("username",username)
+        updateData("email",email)
+        updateData("action","reset password")
+        allowAccess("canAccessVerify")
+        await sendverifymail({email:email, action:'reset password'})
+
+        setTimeout(() => {
+          router.push('/verify');
+          
+        }, 2000)
+
+      }
     },
     { key: 2,name:"log out",
-      handlefunction:()=>{console.log("User logged out")}
+      handlefunction:async()=>{
+        console.log("User logged out")
+        router.push('/')
+        await sighOutReq({},resetData)
+        removeData('jwt')
+        
+      }
     },
-    { key: 3,name:"Delete your account",
-      handlefunction:()=>{console.log("User Delete your account")}
-    },
+    
     
   ]
   const handlelactions=(action)=>{
@@ -51,14 +80,14 @@ const Profile = () => {
     ],
     { cancelable: false } // This ensures the user must choose an option, no outside tapping to dismiss
   )}
-  const handlechangeupdatedata=(option)=>{
-    if(updatedataoption.value!=option){
+  const handlechangeupdatedata=(name,value)=>{
+    if(updatedataoption.value!=name){
         
 
     
       Alert.alert(
                     
-      `Are you sure you want to update your data ${option}?`, 
+      `Are you sure you want to update your data ${name}?`, 
       "",
       [
         {
@@ -68,10 +97,10 @@ const Profile = () => {
         },
         {
           text: "Yes", 
-          onPress: () => (setupdatedataoption({
-            change:false,
-            value:option
-          })), // Replace with your logout logic
+          onPress: () => {
+            setupdatedataoption({change:false, name:name})
+            updateData('updateoption',{name,value})
+          }, // Replace with your logout logic
           style:"destructive",
         }
       ],
@@ -129,12 +158,12 @@ const Profile = () => {
                   if(!updatedataoption.change){
                     setupdatedataoption({
                       change:true,
-                      value:updatedataoption.value
+                      name:updatedataoption.name
                     })
                   }else{
                     setupdatedataoption({
                       change:false,
-                      value:updatedataoption.value
+                      name:updatedataoption.name
                     }) 
                   }
                 }}
@@ -144,7 +173,7 @@ const Profile = () => {
 
               >
                 <View className="flex-row justify-end">
-                  <Text className="font-psemibold text-[15px] mr-[13px]">{updatedataoption.value}{'>'}</Text>
+                  <Text className="font-psemibold text-[15px] mr-[13px]">{updatedataoption.name}{'>'}</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -155,7 +184,7 @@ const Profile = () => {
             <View className="flex-row justify-end mr-[10px] ">
                  <TouchableOpacity
                 onPress={()=>{
-                  handlechangeupdatedata(option.name)
+                  handlechangeupdatedata(option.name,option.value)
                 }}
                 activeOpacity={0.3}
                 className="bg-secondary  justify-center 
