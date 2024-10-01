@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
-import RecipeModal from "./RecipeModal";
-import SearchRecipeModal from "./SearchRecipeModal";
+import RecipeModal from "../recipesComponent/RecipeModal";
+import SearchRecipeModal from "../recipesComponent/SearchRecipeModal";
 
 const Suggestions = () => {
   const suggestions = [

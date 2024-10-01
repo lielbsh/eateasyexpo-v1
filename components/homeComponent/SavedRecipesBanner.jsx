@@ -1,6 +1,6 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
-import RecipeModal from "./RecipeModal";
+import RecipeModal from "../recipesComponent/RecipeModal";
 import { extractRecipe } from "../../scripts/puppeteer/extractRecipe";
 
 const SavedRecipesBanner = ({ _savedItems }) => {

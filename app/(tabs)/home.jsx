@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
-import AutoScrollBanner from "../../components/AutoScrollBanner";
-import CustomSearchBar from "../../components/custom/CustomSearchBar";
+import AutoScrollBanner from "../../components/homeComponent/AutoScrollBanner";
+import CustomSearchBar from "../../components/homeComponent/CustomSearchBar";
 import Header from "../../components/custom/Header";
-import SearchRecipeModal from "../../components/custom/SearchRecipeModal";
-import RecipeModal from "../../components/custom/RecipeModal";
-import SavedRecipesBanner from "../../components/custom/SavedRecipesBanner";
-import Suggestions from "../../components/custom/Suggestions";
+import SearchRecipeModal from "../../components/recipesComponent/SearchRecipeModal";
+import RecipeModal from "../../components/recipesComponent/RecipeModal";
+import SavedRecipesBanner from "../../components/homeComponent/SavedRecipesBanner";
+import Suggestions from "../../components/homeComponent/Suggestions";
 
 const Home = () => {
   const username = "Assaf";

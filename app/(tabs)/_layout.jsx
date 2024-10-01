@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Tabs, Redirect } from "expo-router";
 import { icons } from "../../constants";
 import { colors } from "../../constants/colors";
-import FadeOutComponent from "../../components/endtransition";
 
 const TabsLayout = React.memo(() => {
   const TabIcon = ({ icon, color, name, focused }) => {

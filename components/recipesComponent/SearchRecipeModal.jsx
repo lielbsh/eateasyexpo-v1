@@ -9,13 +9,13 @@ import {
   ActivityIndicator,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { icons } from "../../constants";
-import HeartButton from "./HeartButton";
-import { searchScript } from "../../scripts/puppeteer/searchScript";
-import { extractRecipe } from "../../scripts/puppeteer/extractRecipe";
-import RecipeModal from "./RecipeModal";
-import LoadingDots from "./LoadingDots";
-import { useDataGuard } from "../../components/data/globaldata.jsx";
+import { icons } from "../../constants/index.js";
+import HeartButton from "../custom/HeartButton.jsx";
+import { searchScript } from "../../scripts/puppeteer/searchScript.js";
+import { extractRecipe } from "../../scripts/puppeteer/extractRecipe.js";
+import RecipeModal from "./RecipeModal.jsx";
+import LoadingDots from "../custom/LoadingDots.jsx";
+import { useDataGuard } from "../data/globaldata.jsx";
 
 // async function searchScript() {
 //   return [

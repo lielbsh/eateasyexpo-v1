@@ -8,15 +8,15 @@ import {
   Image,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { icons } from "../../constants";
+import { icons } from "../../constants/index.js";
 import Icon from "react-native-vector-icons/Ionicons";
-import { useDataGuard } from "../../components/data/globaldata.jsx";
+import { useDataGuard } from "../data/globaldata.jsx";
 import { groceries } from "../../scripts/puppeteer/groceries.js";
 import {
   convertToIndexes,
   convertToFoodList,
 } from "../../scripts/convertToFood.js";
-import LoadingDots from "./LoadingDots.jsx";
+import LoadingDots from "../custom/LoadingDots.jsx";
 // async function groceries() {
 //   return [
 //     {

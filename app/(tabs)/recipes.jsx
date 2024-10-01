@@ -5,9 +5,9 @@ import backgroundImage from "../../assets/images/background5.png";
 import { icons, images } from "../../constants";
 import Header from "../../components/custom/Header";
 import DeleteButton from "../../components/custom/deleteButton";
-import LibraryCard from "../../components/custom/LibraryCard";
+import LibraryCard from "../../components/recipesComponent/LibraryCard";
 import { router } from "expo-router";
-import RecipeModal from "../../components/custom/RecipeModal";
+import RecipeModal from "../../components/recipesComponent/RecipeModal.jsx";
 import { extractRecipe } from "../../scripts/puppeteer/extractRecipe";
 import { useDataGuard } from "../../components/data/globaldata.jsx";
 
