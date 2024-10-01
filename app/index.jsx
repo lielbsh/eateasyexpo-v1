@@ -10,7 +10,7 @@ import StartComponent from "../components/custom/startComponent"
 
 
 export default function Index() {
-  const [initialpage,setinItialPage]=useState(false)
+  const [initialpage,setinItialPage]=useState(true)
   
   
 

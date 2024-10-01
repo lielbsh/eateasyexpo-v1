@@ -52,9 +52,14 @@ const Profile = () => {
     { key: 2,name:"log out",
       handlefunction:async()=>{
         console.log("User logged out")
+        
         router.push('/')
-        await sighOutReq({},resetData)
-        removeData('jwt')
+        
+        setTimeout(async() => {
+          await sighOutReq({},resetData)
+          removeData('jwt')
+          removeData('userData')   
+        }, 1000);
         
       }
     },

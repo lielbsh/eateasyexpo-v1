@@ -1,8 +1,9 @@
 import React, { useEffect, useRef ,useState} from 'react';
 import { View, Animated, Easing,Text,Image } from 'react-native';
-
-const LoadinComponent = () => {
-  
+import { useDataGuard } from '../data/globaldata';
+import { router } from 'expo-router';
+const LoadinComponent = ({setReload}) => {
+  const { user,updateData,resetData } = useDataGuard();
   const animatedOpacity = useRef(new Animated.Value(0)).current;
   const animatedRadius = useRef(new Animated.Value(60)).current;
   const animatedRadius2 = useRef(new Animated.Value(50)).current;
@@ -62,7 +63,10 @@ const LoadinComponent = () => {
     animateRadius2();
 
     // After 5 seconds, expand both circles
-    const expandCircles = setTimeout(() => {
+    
+  }, [duration]);
+  useEffect(() => {
+    if (user.username){
       Animated.timing(animatedRadius2, {
         toValue: 1000, // or a value larger than the screen width/height
         duration: 1000,
@@ -73,16 +77,22 @@ const LoadinComponent = () => {
         duration: 1000,
         useNativeDriver: false,
       }).start();
-    }, 3500);
-
+      const expandCircles = setTimeout(() => {
+        setReload(false)
+        router.push('/home')
+        
+      }, 1000);
+    
     
 
     return () => {
       clearTimeout(expandCircles);
        // Stop ongoing animations
     };
-  }, [duration]);
-
+    }
+    
+  }, [user])
+  
   return (
     <Animated.View 
       className="absolute w-[100%] h-[100%] bg-red top-[-50px] left-0 z-20 items-center justify-center"

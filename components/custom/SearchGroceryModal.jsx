@@ -12,7 +12,11 @@ import { icons } from "../../constants";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useDataGuard } from "../../components/data/globaldata.jsx";
 import { groceries } from "../../scripts/puppeteer/groceries.js";
-
+import {
+  convertToIndexes,
+  convertToFoodList,
+} from "../../scripts/convertToFood.js";
+import LoadingDots from "./LoadingDots.jsx";
 // async function groceries() {
 //   return [
 //     {
@@ -96,7 +100,8 @@ const SearchGroceryModal = ({ _searchMode, _toggleSearchMode, _title }) => {
   const handleSaveSelectedItems = () => {
     console.log("Selected items saved:", selectedItems);
     _toggleSearchMode(); // Close the modal after saving
-    // updateData
+    updateData("cart", [...user.cart, ...convertToIndexes(selectedItems)]);
+    console.log(user.cart);
   };
 
   return (
@@ -134,43 +139,77 @@ const SearchGroceryModal = ({ _searchMode, _toggleSearchMode, _title }) => {
 
           {/* Displaying Grocery Results */}
           {loading ? (
-            <Text className="mt-[20]">Searching...</Text>
+            <LoadingDots />
           ) : searchAttempted && results.length === 0 ? (
-            <Text className="mt-[20]">No results found.</Text>
+            <View className="items-center justify-center mt-[20px]">
+              <Text className="color-gray text-[18px] font-medium">
+                Oops! No results found😞
+              </Text>
+            </View>
           ) : (
             <View>
               <ScrollView className="mt-[20]">
-                {results.map((result, index) => (
-                  <View key={index}>
-                    <TouchableOpacity
-                      className="flex-row items-center justify-between mb-[20]"
-                      onPress={() => handleSelectItem(result)}
-                    >
-                      <Text className="font-bold text-lg">
-                        {result.hitname}
-                      </Text>
+                {results.map((result, index) => {
+                  // Check if the item is already in the cart or groceries
+                  const isInCart = user.cart.some((item) => item === result.id);
+                  const isInGroceries = user.groceries.some(
+                    (item) => item === result.id
+                  );
 
-                      <Icon
-                        name={
-                          selectedItems.includes(result)
-                            ? "checkmark-circle"
-                            : "add-circle"
-                        }
-                        color={
-                          selectedItems.includes(result) ? "green" : "gray"
-                        }
-                        size={35}
+                  return (
+                    <View key={index}>
+                      <TouchableOpacity
+                        style={{
+                          backgroundColor:
+                            isInGroceries || isInCart
+                              ? "rgba(0,0,0,0.3)"
+                              : "transparent",
+                          padding: 10,
+                          borderRadius: 5,
+                        }}
+                        className="flex-row justify-between items-center"
+                        onPress={() => {
+                          if (!isInCart && !isInGroceries) {
+                            console.log("is", isInCart, isInGroceries);
+                            handleSelectItem(result);
+                          }
+                        }}
+                      >
+                        <Text className="font-bold text-lg flex-shrink">
+                          {result.hitname}
+                        </Text>
+
+                        {/* Conditionally rendering icons based on the status */}
+                        <Icon
+                          name={
+                            isInGroceries
+                              ? "checkmark-circle" // Show "V" if it's in groceries
+                              : isInCart
+                              ? "checkmark-circle" // Show as already added to the cart
+                              : "add-circle" // Default icon for new items
+                          }
+                          color={
+                            selectedItems.includes(result)
+                              ? "green" // Green color for groceries
+                              : isInCart
+                              ? "green" // Blue color for cart items
+                              : "gray" // Gray for not yet selected items
+                          }
+                          size={35}
+                        />
+                      </TouchableOpacity>
+
+                      <View
+                        style={{
+                          height: 1,
+                          backgroundColor: "gray",
+                          marginVertical: 7,
+                        }}
                       />
-                    </TouchableOpacity>
-                    <View
-                      style={{
-                        height: 1,
-                        backgroundColor: "gray",
-                        marginVertical: 10,
-                      }}
-                    />
-                  </View>
-                ))}
+                    </View>
+                  );
+                })}
+                <View className="h-[200px] w-full"></View>
               </ScrollView>
             </View>
           )}

@@ -1,11 +1,11 @@
-import { View, Text, Image } from 'react-native';
-import React, { useState } from 'react';
-import { Tabs, Redirect } from 'expo-router';
-import { icons } from '../../constants';
-import { colors } from '../../constants/colors';
-import FadeOutComponent from '../../components/endtransition';
+import { View, Text, Image } from "react-native";
+import React, { useState } from "react";
+import { Tabs, Redirect } from "expo-router";
+import { icons } from "../../constants";
+import { colors } from "../../constants/colors";
+import FadeOutComponent from "../../components/endtransition";
 
-const TabsLayout = () => {
+const TabsLayout = React.memo(() => {
   const TabIcon = ({ icon, color, name, focused }) => {
     const iconColor = focused ? colors.green : colors.burgundy;
     const textColor = focused ? colors.green : colors.burgundy;
@@ -24,90 +24,91 @@ const TabsLayout = () => {
         >
           {name}
         </Text>
-        
       </View>
     );
   };
 
-
   return (
     <>
-    
-    <Tabs
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarStyle: { backgroundColor: colors.background.offwhite ,height:100, alignItems:"center", justifyContent:"center" }, // Customize background color
-        // tabBarActiveTintColor: colors.green,
-        // tabBarInactiveTintColor: colors.burgundy,
-      }}
-    >
+      <Tabs
+        screenOptions={{
+          tabBarShowLabel: false,
+          tabBarStyle: {
+            backgroundColor: colors.background.offwhite,
+            height: 100,
+            alignItems: "center",
+            justifyContent: "center",
+          }, // Customize background color
+          // tabBarActiveTintColor: colors.green,
+          // tabBarInactiveTintColor: colors.burgundy,
+        }}
+      >
+        <Tabs.Screen
+          name="home"
+          options={{
+            title: "Home",
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.home}
+                color={color}
+                name="Home"
+                focused={focused}
+              />
+            ),
+          }}
+        />
 
-      <Tabs.Screen
-        name='home'
-        options = {{
-          
-          title: 'Home',
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.home}
-              color={color}
-              name="Home"
-              focused={focused}
-            />
-          )}}
-      />
+        <Tabs.Screen
+          name="cart"
+          options={{
+            title: "Cart",
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.cart}
+                color={color}
+                name="cart"
+                focused={focused}
+              />
+            ),
+          }}
+        />
 
-      <Tabs.Screen
-        name='cart'
-        options = {{
-          title: 'Cart',
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.cart}
-              color={color}
-              name="cart"
-              focused={focused}
-            />
-          )}}
-      />
+        <Tabs.Screen
+          name="recipes"
+          options={{
+            title: "Recipes",
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.recipes}
+                color={color}
+                name="recipes"
+                focused={focused}
+              />
+            ),
+          }}
+        />
 
-      <Tabs.Screen
-        name='recipes'
-        options = {{
-          title: 'Recipes',
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.recipes}
-              color={color}
-              name="recipes"
-              focused={focused}
-            />
-          )}}
-      />
-
-      <Tabs.Screen
-        name='profile'
-        options = {{
-          title: 'Profile',
-          headerShown: false,
-          tabBarIcon: ({ color, focused }) => (
-            <TabIcon
-              icon={icons.profile}
-              color={color}
-              name="profile"
-              focused={focused}
-            />
-          )}}
-      />
-
-
-    </Tabs>
-          
+        <Tabs.Screen
+          name="profile"
+          options={{
+            title: "Profile",
+            headerShown: false,
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon
+                icon={icons.profile}
+                color={color}
+                name="profile"
+                focused={focused}
+              />
+            ),
+          }}
+        />
+      </Tabs>
     </>
-  )
-}
+  );
+});
 
-export default TabsLayout
+export default TabsLayout;

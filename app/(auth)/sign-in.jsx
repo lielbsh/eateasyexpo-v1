@@ -8,10 +8,11 @@ import CustomButton from "../../components/custom/CustomButton";
 import {sighInReq} from "../../scripts/regesterScript/sign-in.js"
 import { useDataGuard } from '../../components/data/globaldata.jsx';
 import LoadinComponent from "../../components/custom/loadingComponent"
-
+import { retreiveData } from "../../scripts/regesterScript/cloud.js";
 
 const SignIn = () => {
   const [reload,setReload]=useState(false)
+  const [message, setMessage] = useState("");
   const { user,updateData,resetData } = useDataGuard();
   const [form, setForm]  = useState({
     username: '',
@@ -26,13 +27,15 @@ const SignIn = () => {
       Alert.alert("Oops!", "Please fill in all fields");
     } else {
       const result= await sighInReq(form,updateData)
+      setMessage(result)
       if (result == 'login sucessful. Retrieving your data') {
-          // setReload(true)
-        //   setTimeout(() => {
-        //     router.replace('/home');
-            
-        // }, 4490)
+        setReload(true)
+        setIsSubmitting(false)
       } else {
+        setTimeout(() => {
+          setIsSubmitting(false)
+          setMessage('')
+        }, 2000);
       }
     }
   };
@@ -96,11 +99,16 @@ const SignIn = () => {
           </View>
           
         </View>
+        <View className="items-center mt-[0px]">
+            <Text className="text-sm font-psemibold text-white">
+                {message}
+            </Text >
+        </View>
       </ScrollView>
       <Image source={require('../../assets/images/background.png')}  className="absolute w-[500px] h-[500px] top-[450px] left-[50px]" style={{ opacity: 0.5, zIndex: -1 }}
       />
       
-      {(reload) && (<LoadinComponent></LoadinComponent>)}
+      {(reload) && (<LoadinComponent setReload={setReload}></LoadinComponent>)}
       
       
       </SafeAreaView>

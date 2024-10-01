@@ -117,6 +117,13 @@ export const DataProvider = ({ children }) => {
     }));
     
   };
+  const updateCart = (newCart, newGroceries) => {
+    setUser((prev) => ({
+      ...prev,
+      cart: newCart,
+      groceries: newGroceries,
+    }));
+  };
 
   const resetData = () => {
     setUser({
@@ -127,7 +134,7 @@ export const DataProvider = ({ children }) => {
       email:'',
       changes:[],
       action:'',
-      login:'',
+      login:'Not loged In',
       updateoption:{name:'every week',
         value:604800000}
       
@@ -137,32 +144,11 @@ export const DataProvider = ({ children }) => {
   };
 
   return (
-    <DataContext.Provider value={{ user, updateData, resetData }}>
+    <DataContext.Provider value={{ user, updateData, updateCart,resetData }}>
       {children}
     </DataContext.Provider>
   );
 };
 
-
-
-
-
-
-//   // Handle AppState changes
-//   useEffect(() => {
-//     const handleAppStateChange = (nextAppState) => {
-//       if (nextAppState === 'active') {
-//         fetchData(); // Fetch data again when the app comes back to the foreground
-//       } else if (nextAppState === 'inactive' || nextAppState === 'background') {
-//         saveData(); // Save data when the app goes to the background
-//       }
-//     };
-
-//     const subscription = AppState.addEventListener('change', handleAppStateChange);
-
-//     return () => {
-//       subscription.remove(); // Clean up the event listener
-//     };
-//   }, [user]); // Rerun when the user state changes
 
 

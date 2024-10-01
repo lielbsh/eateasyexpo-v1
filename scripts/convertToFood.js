@@ -7,12 +7,9 @@ export const convertToFoodList = (indexes) => {
     const numIndex = parseInt(index, 10); // Convert index to a number
     return foodData.find(foodItem => foodItem.id === numIndex);
   });
+}
+
+// Helper function to convert food list items into indexes
+export const convertToIndexes = (foodList) => {
+  return foodList.map(foodItem => foodItem.id.toString());
 };
-
-
-  // Example usage:
-  const toBuyIndexes = ['1', '3', '5', '9', '10', '30', '34','59']; // These are the indices you get for "to buy" items
-  const atHomeIndexes = ['2', '4', '7']; // These are the indices for "at home" items
-  
-  export const toBuyList = convertToFoodList(toBuyIndexes);
-  export const atHomeList = convertToFoodList(atHomeIndexes);

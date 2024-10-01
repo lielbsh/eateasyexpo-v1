@@ -3,7 +3,7 @@ import { View, Animated, Easing, Text, Image } from 'react-native';
 import { router } from 'expo-router';
 import { useDataGuard } from '../data/globaldata';
 const StartComponent = ({ }) => {
-  const [view,setView]=useState(false)
+  const [view,setView]=useState(true)
   const { user,updateData,resetData } = useDataGuard();
   const animatedOpacity = useRef(new Animated.Value(1)).current;
   const animatedRadius = useRef(new Animated.Value(60)).current;
