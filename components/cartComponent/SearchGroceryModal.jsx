@@ -17,30 +17,10 @@ import {
   convertToFoodList,
 } from "../../scripts/convertToFood.js";
 import LoadingDots from "../custom/LoadingDots.jsx";
-// async function groceries() {
-//   return [
-//     {
-//       id: "1",
-//       hitname: "Prepared Graham Cracker Crust",
-//     },
-//     {
-//       id: "2",
-//       hitname: "Another Ingredient",
-//     },
-//     {
-//       id: "3",
-//       hitname: "Prepared Graham Cracker Crust",
-//     },
-//     {
-//       id: "4",
-//       hitname: "Another Ingredient",
-//     },
-//   ];
-// }
+import LoadingModalSpiral from "../custom/LoadingModalSpiral.jsx";
 
 const SearchGroceryModal = ({ _searchMode, _toggleSearchMode, _title }) => {
-  const { user, updateData, resetData } = useDataGuard();
-  //
+  const { user, updateData } = useDataGuard();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -57,7 +37,7 @@ const SearchGroceryModal = ({ _searchMode, _toggleSearchMode, _title }) => {
         try {
           const fetchedResults = await groceries({ stringInput: query }); // Fetch search results
           setResults(fetchedResults);
-          console.log(fetchedResults);
+          // console.log(fetchedResults);
         } catch (error) {
           console.error("Error fetching results: ", error);
         } finally {
@@ -111,6 +91,9 @@ const SearchGroceryModal = ({ _searchMode, _toggleSearchMode, _title }) => {
       animationType="fade"
       className="flex-1"
     >
+      {/* Loading spiral modal */}
+      <LoadingModalSpiral _visible={loading} />
+
       <View className="flex-1 p-4 bg-background-offwhite opacity-95">
         {/* Return Button */}
         <TouchableOpacity onPress={_toggleSearchMode}>

@@ -17,18 +17,13 @@ const LoadingDots = () => {
       <View style={{ flexDirection: "row", marginTop: "20%" }}>
         <Text className="color-gray-600 text-[18px] font-medium">
           We’re gathering delicious recipes
-          <Text className="color-gray">{dots}</Text> {/* Dots are animated */}
+          <Text className="color-gray-600">{dots}</Text>{" "}
+          {/* Dots are animated */}
         </Text>
       </View>
-      <Text className="text-[16px] font-bold color-red mt-[10px]">
+      <Text className="text-[16px] font-bold color-lime mt-[10px]">
         Hold tight, good things take time!
       </Text>
-      <View style={{ alignItems: "center", marginTop: 20 }}>
-        <Image
-          source={require("../../assets/images/loading.gif")} // Loading spinner image
-          className="w-[40px] h-[40px]"
-        />
-      </View>
     </>
   );
 };

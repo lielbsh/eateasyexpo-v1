@@ -125,7 +125,14 @@ export const DataProvider = ({ children }) => {
     }));
   };
 
-  const resetData = () => {
+  const resetData = async() => {
+    const storedataoncloud= async()=>{
+        await updaterecipescloud(user.changes)
+        updateData('changes',[])
+        await updategroceriesandcartcloud(user.groceries,user.cart)
+        
+    }
+    await storedataoncloud()
     setUser({
       recipes:[],
       groceries:[],

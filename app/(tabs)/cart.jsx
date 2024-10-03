@@ -16,7 +16,7 @@ import {
   convertToFoodList,
 } from "../../scripts/convertToFood.js";
 import CartItem from "../../components/cartComponent/CartItem"; // Import the new CartItem component
-import FloatingActionButton from "../../components/custom/FloatingActionButton";
+import FloatingActionButton from "../../components/cartComponent/FloatingActionButton";
 import backgroundImage from "../../assets/images/background4.png";
 import SearchGroceryModal from "../../components/cartComponent/SearchGroceryModal.jsx";
 import { useDataGuard } from "../../components/data/globaldata.jsx";

@@ -2,34 +2,38 @@ import { View, Text, Image, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import backgroundImage from "../../assets/images/background5.png";
-import { icons, images } from "../../constants";
+import { images } from "../../constants";
 import Header from "../../components/custom/Header";
 import DeleteButton from "../../components/custom/deleteButton";
 import LibraryCard from "../../components/recipesComponent/LibraryCard";
-import { router } from "expo-router";
 import RecipeModal from "../../components/recipesComponent/RecipeModal.jsx";
 import { extractRecipe } from "../../scripts/puppeteer/extractRecipe";
 import { useDataGuard } from "../../components/data/globaldata.jsx";
+import LoadingModalSpiral from "../../components/custom/LoadingModalSpiral.jsx";
 
 const Recipes = () => {
   const { user, updateData, resetData } = useDataGuard();
   const [displayRecipe, setDisplayRecipe] = useState(false);
   const [openRecipe, setOpenRecipe] = useState();
-  const [disabledButton, setdisabledButton] = useState(false);
+  const [isLoadingRecipe, setIsLoadingRecipe] = useState(false); // Track recipe loading
 
   const [recipeData, setRecipeData] = useState();
   const handelState = async (recipeUrl) => {
-    console.log("URL:", recipeUrl);
-    let recipe = await extractRecipe({ recipeURL: recipeUrl });
-    setRecipeData(recipe);
-
-    setDisplayRecipe(true);
+    setIsLoadingRecipe(true); // Start loading spinner
+    try {
+      let recipe = await extractRecipe({ recipeURL: recipeUrl });
+      setRecipeData(recipe);
+      setDisplayRecipe(true);
+    } catch (error) {
+      console.log("Error fetching recipe:", error);
+    } finally {
+      setIsLoadingRecipe(false); // Stop loading spinner
+    }
   };
 
   // Function to toggle search mode
   const togglehRecipeMode = () => {
     setDisplayRecipe(!displayRecipe);
-    setdisabledButton(false);
   };
 
   // Helper function to remove saved recipe
@@ -38,6 +42,7 @@ const Recipes = () => {
       (recipe) => recipe !== recipeToDelete
     );
     updateData("recipes", updatedRecipes);
+    updateData("changes",[...user.changes,['DELETE',recipeToDelete]])
     console.log("item removed");
   };
 
@@ -49,6 +54,8 @@ const Recipes = () => {
         _recipe={openRecipe}
         _recipeData={recipeData}
       />
+
+      <LoadingModalSpiral _visible={isLoadingRecipe} _opacity={0.25} />
 
       <Header color={"#fff5dc"} />
 
@@ -72,11 +79,8 @@ const Recipes = () => {
                 inputText="bg-background-beige"
                 item={item}
                 handelPress={() => {
-                  if (!disabledButton) {
-                    setOpenRecipe(item);
-                    handelState(item.href);
-                    setdisabledButton(true);
-                  }
+                  setOpenRecipe(item);
+                  handelState(item.href);
                 }}
               />
               <DeleteButton
@@ -92,13 +96,7 @@ const Recipes = () => {
           ))}
         </View>
       </ScrollView>
-      {disabledButton && (
-        <Image
-          source={images.loading}
-          className="absolute top-[54%] left-[42.5%] h-[8%] w-[15%] "
-          style={{ zIndex: 2 }}
-        />
-      )}
+
       <View
         className="absolute h-[full] w-[full] top-[0px] left-0 "
         style={{ backgroundColor: "rgba(58, 86, 44,0.7)", zIndex: -2 }}
