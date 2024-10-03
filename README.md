@@ -65,35 +65,7 @@ Check out the live demo of EatEasy [**here**](https://your-demo-link-here.com).
 <hr/> 
 
 
-## 🖼️ Photo Gallery
-
-Check out our beautiful photo gallery showcasing delicious recipes and grocery management tips! 
-
-<div style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px;">
-  <div style="min-width: 300px; margin-right: 10px; scroll-snap-align: start;">
-    <a href="link-to-photo1">
-      <img src="https://via.placeholder.com/300x200?text=Recipe+1" alt="Delicious Recipe 1" style="width: 100%; border-radius: 10px;" />
-    </a>
-  </div>
-  <div style="min-width: 300px; margin-right: 10px; scroll-snap-align: start;">
-    <a href="link-to-photo2">
-      <img src="https://via.placeholder.com/300x200?text=Recipe+2" alt="Delicious Recipe 2" style="width: 100%; border-radius: 10px;" />
-    </a>
-  </div>
-  <div style="min-width: 300px; margin-right: 10px; scroll-snap-align: start;">
-    <a href="link-to-photo3">
-      <img src="https://via.placeholder.com/300x200?text=Recipe+3" alt="Delicious Recipe 3" style="width: 100%; border-radius: 10px;" />
-    </a>
-  </div>
-  <div style="min-width: 300px; margin-right: 10px; scroll-snap-align: start;">
-    <a href="link-to-photo4">
-      <img src="https://via.placeholder.com/300x200?text=Recipe+4" alt="Delicious Recipe 4" style="width: 100%; border-radius: 10px;" />
-    </a>
-  </div>
-  <div style="min-width: 300px; margin-right: 10px; scroll-snap-align: start;">
-    <a href="link-to-photo5">
-      <img src="https://via.placeholder.com/300x200?text=Recipe+5" alt="Delicious Recipe 5" style="width: 100%; border-radius: 10px;" />
-    </a>
-  </div>
+## 📸 Screenshots
+ <div align="center">
+  <img src="https://i.imgur.com/mmAzwHf.png" alt="screenshot" width="959"/>
 </div>
-
