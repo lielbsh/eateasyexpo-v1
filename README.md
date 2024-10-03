@@ -69,56 +69,31 @@ Check out the live demo of EatEasy [**here**](https://your-demo-link-here.com).
 
 Check out our beautiful photo gallery showcasing delicious recipes and grocery management tips! 
 
-
-<div class="gallery-container" style="position: relative; width: 100%; overflow: hidden;">
-  <div class="gallery" style="display: flex; transition: transform 0.5s ease;">
-    <div class="gallery-item" style="min-width: 33.33%; box-sizing: border-box;">
-      <a href="link-to-photo1">
-        <img src="https://via.placeholder.com/300x200?text=Recipe+1" alt="Delicious Recipe 1" style="width: 100%; border-radius: 10px;" />
-      </a>
-    </div>
-    <div class="gallery-item" style="min-width: 33.33%; box-sizing: border-box;">
-      <a href="link-to-photo2">
-        <img src="https://via.placeholder.com/300x200?text=Recipe+2" alt="Delicious Recipe 2" style="width: 100%; border-radius: 10px;" />
-      </a>
-    </div>
-    <div class="gallery-item" style="min-width: 33.33%; box-sizing: border-box;">
-      <a href="link-to-photo3">
-        <img src="https://via.placeholder.com/300x200?text=Recipe+3" alt="Delicious Recipe 3" style="width: 100%; border-radius: 10px;" />
-      </a>
-    </div>
-    <div class="gallery-item" style="min-width: 33.33%; box-sizing: border-box;">
-      <a href="link-to-photo4">
-        <img src="https://via.placeholder.com/300x200?text=Recipe+4" alt="Delicious Recipe 4" style="width: 100%; border-radius: 10px;" />
-      </a>
-    </div>
-    <div class="gallery-item" style="min-width: 33.33%; box-sizing: border-box;">
-      <a href="link-to-photo5">
-        <img src="https://via.placeholder.com/300x200?text=Recipe+5" alt="Delicious Recipe 5" style="width: 100%; border-radius: 10px;" />
-      </a>
-    </div>
+<div style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px;">
+  <div style="min-width: 300px; margin-right: 10px; scroll-snap-align: start;">
+    <a href="link-to-photo1">
+      <img src="https://via.placeholder.com/300x200?text=Recipe+1" alt="Delicious Recipe 1" style="width: 100%; border-radius: 10px;" />
+    </a>
   </div>
-  <button class="prev" onclick="moveSlide(-1)" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0.7); border: none; cursor: pointer; padding: 10px; border-radius: 5px;">&#10094;</button>
-  <button class="next" onclick="moveSlide(1)" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0.7); border: none; cursor: pointer; padding: 10px; border-radius: 5px;">&#10095;</button>
+  <div style="min-width: 300px; margin-right: 10px; scroll-snap-align: start;">
+    <a href="link-to-photo2">
+      <img src="https://via.placeholder.com/300x200?text=Recipe+2" alt="Delicious Recipe 2" style="width: 100%; border-radius: 10px;" />
+    </a>
+  </div>
+  <div style="min-width: 300px; margin-right: 10px; scroll-snap-align: start;">
+    <a href="link-to-photo3">
+      <img src="https://via.placeholder.com/300x200?text=Recipe+3" alt="Delicious Recipe 3" style="width: 100%; border-radius: 10px;" />
+    </a>
+  </div>
+  <div style="min-width: 300px; margin-right: 10px; scroll-snap-align: start;">
+    <a href="link-to-photo4">
+      <img src="https://via.placeholder.com/300x200?text=Recipe+4" alt="Delicious Recipe 4" style="width: 100%; border-radius: 10px;" />
+    </a>
+  </div>
+  <div style="min-width: 300px; margin-right: 10px; scroll-snap-align: start;">
+    <a href="link-to-photo5">
+      <img src="https://via.placeholder.com/300x200?text=Recipe+5" alt="Delicious Recipe 5" style="width: 100%; border-radius: 10px;" />
+    </a>
+  </div>
 </div>
-
-<script>
-let currentIndex = 0;
-
-function moveSlide(direction) {
-  const gallery = document.querySelector('.gallery');
-  const totalItems = document.querySelectorAll('.gallery-item').length;
-
-  currentIndex += direction;
-
-  if (currentIndex < 0) {
-    currentIndex = totalItems - 1; // Loop to the last item
-  } else if (currentIndex >= totalItems) {
-    currentIndex = 0; // Loop to the first item
-  }
-
-  const itemWidth = document.querySelector('.gallery-item').clientWidth;
-  gallery.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
-}
-</script>
 
