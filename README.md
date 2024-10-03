@@ -6,10 +6,10 @@ Welcome to **EatEasy**, a full-stack application designed to help users discover
 
 ## 🚀 Features
 
-- **Recipe Discovery**: Explore a wide variety of recipes.
-- **Grocery Management**: Keep track of the groceries you have at home and manage your shopping list effortlessly.
-- **User Authentication**: Secure sign-in and sign-up processes using bcrypt for password hashing.
-- **Web Scraping**: Utilize Puppeteer to fetch the latest recipes from various sources, ensuring a rich database of culinary ideas.
+- 🍲 **Recipe Discovery**: Explore a wide variety of delicious recipes.
+- 🛒 **Grocery Management**: Keep track of your groceries at home and manage your shopping list effortlessly.
+- 🔒 **User Authentication**: Enjoy secure sign-in and sign-up processes using bcrypt for password hashing.
+- 🕸️ **Web Scraping**: Utilize Puppeteer to fetch the latest recipes from various sources, ensuring a rich database of culinary ideas.
 
 ---
 
@@ -25,7 +25,6 @@ Welcome to **EatEasy**, a full-stack application designed to help users discover
 </a>
 
 ---
-
 ## ⚙️ Technologies Used (Backend)
 
 &emsp;
