@@ -67,92 +67,40 @@ Check out the live demo of EatEasy [**here**](https://your-demo-link-here.com).
 
 ## 🖼️ Photo Gallery
 
-Check out our beautiful photo gallery showcasing delicious recipes and grocery management tips! The gallery features a horizontal swipe functionality, allowing you to view 3-4 photos at a time. 
+Check out our beautiful photo gallery showcasing delicious recipes and grocery management tips! 
 
-### Gallery Features
 
-- **Swipe Through Images**: Easily navigate through the images by swiping left or right.
-- **Dynamic Image Display**: The gallery displays 3-4 images simultaneously, providing an engaging visual experience.
-
-### Example Code
-
-Here's how you can implement the photo gallery in your app:
-
-```html
-<div class="gallery-container">
-  <div class="gallery">
-    <div class="gallery-item">
+<div class="gallery-container" style="position: relative; width: 100%; overflow: hidden;">
+  <div class="gallery" style="display: flex; transition: transform 0.5s ease;">
+    <div class="gallery-item" style="min-width: 33.33%; box-sizing: border-box;">
       <a href="link-to-photo1">
-        <img src="path-to-photo1" alt="Description of photo 1" />
+        <img src="https://via.placeholder.com/300x200?text=Recipe+1" alt="Delicious Recipe 1" style="width: 100%; border-radius: 10px;" />
       </a>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="min-width: 33.33%; box-sizing: border-box;">
       <a href="link-to-photo2">
-        <img src="path-to-photo2" alt="Description of photo 2" />
+        <img src="https://via.placeholder.com/300x200?text=Recipe+2" alt="Delicious Recipe 2" style="width: 100%; border-radius: 10px;" />
       </a>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="min-width: 33.33%; box-sizing: border-box;">
       <a href="link-to-photo3">
-        <img src="path-to-photo3" alt="Description of photo 3" />
+        <img src="https://via.placeholder.com/300x200?text=Recipe+3" alt="Delicious Recipe 3" style="width: 100%; border-radius: 10px;" />
       </a>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="min-width: 33.33%; box-sizing: border-box;">
       <a href="link-to-photo4">
-        <img src="path-to-photo4" alt="Description of photo 4" />
+        <img src="https://via.placeholder.com/300x200?text=Recipe+4" alt="Delicious Recipe 4" style="width: 100%; border-radius: 10px;" />
       </a>
     </div>
-    <div class="gallery-item">
+    <div class="gallery-item" style="min-width: 33.33%; box-sizing: border-box;">
       <a href="link-to-photo5">
-        <img src="path-to-photo5" alt="Description of photo 5" />
+        <img src="https://via.placeholder.com/300x200?text=Recipe+5" alt="Delicious Recipe 5" style="width: 100%; border-radius: 10px;" />
       </a>
     </div>
   </div>
-  <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-  <button class="next" onclick="moveSlide(1)">&#10095;</button>
+  <button class="prev" onclick="moveSlide(-1)" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0.7); border: none; cursor: pointer; padding: 10px; border-radius: 5px;">&#10094;</button>
+  <button class="next" onclick="moveSlide(1)" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0.7); border: none; cursor: pointer; padding: 10px; border-radius: 5px;">&#10095;</button>
 </div>
-
-<style>
-.gallery-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.gallery {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.gallery-item {
-  min-width: 33.33%; /* Adjust this value for how many items to show */
-  box-sizing: border-box;
-}
-
-.gallery-item img {
-  width: 100%;
-  border-radius: 10px; /* Optional: to add rounded corners */
-}
-
-button.prev, button.next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.7);
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 10;
-}
-
-button.prev {
-  left: 10px;
-}
-
-button.next {
-  right: 10px;
-}
-</style>
 
 <script>
 let currentIndex = 0;
