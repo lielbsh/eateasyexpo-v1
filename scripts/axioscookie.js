@@ -1,9 +1,9 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // For manual storage of cookies
-//https://eateasyserver.onrender.com
+
 // Create an Axios instance
 const api = axios.create({
-  baseURL: 'http://10.100.102.151:3000', // Your backend URL
+  baseURL: 'http://eateasyserver.onrender.com', // Your backend URL
   withCredentials: true
 });
 
