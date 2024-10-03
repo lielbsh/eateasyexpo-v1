@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# 🍽️ EatEasy - Recipe Finder and Grocery Tracker- Frontend (2024)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to **EatEasy**, a full-stack application designed to help users discover new recipes while efficiently managing their groceries at home and creating a shopping list! This project showcases a seamless user experience powered by **React Native Expo** for the front end and **Node.js** for the back end, featuring secure sign-in/sign-up functionalities with bcrypt and web scraping using Puppeteer.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Features
 
-   ```bash
-   npm install
-   ```
+- **Recipe Discovery**: Explore a wide variety of recipes.
+- **Grocery Management**: Keep track of the groceries you have at home and manage your shopping list effortlessly.
+- **User Authentication**: Secure sign-in and sign-up processes using bcrypt for password hashing.
+- **Web Scraping**: Utilize Puppeteer to fetch the latest recipes from various sources, ensuring a rich database of culinary ideas.
 
-2. Start the app
+---
 
-   ```bash
-    npx expo start
-   ```
+## ⚙️ Technologies Used (Frontend)
 
-In the output, you'll find options to open the app in a
+&emsp;
+<a href="https://reactnative.dev/" target="_blank">
+  <img alt="React Native" src="https://img.shields.io/badge/React%20Native-%2320232a.svg?style=for-the-badge&logo=reactnative&logoColor=61DAFB">
+</a>
+&emsp;
+<a href="https://docs.expo.dev/" target="_blank">
+  <img alt="Expo" src="https://img.shields.io/badge/Expo-1B1F29.svg?style=for-the-badge&logo=expo&logoColor=white">
+</a>
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## ⚙️ Technologies Used (Backend)
 
-## Get a fresh project
+&emsp;
+<a href="https://nodejs.org/" target="_blank">
+  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-339933.svg?style=for-the-badge&logo=node.js&logoColor=white">
+</a>
+&emsp;
+<a href="https://www.npmjs.com/package/bcrypt" target="_blank">
+  <img alt="bcrypt" src="https://img.shields.io/badge/bcrypt-%23333333.svg?style=for-the-badge&logo=security&logoColor=white">
+</a>
+&emsp;
+<a href="https://pptr.dev/" target="_blank">
+  <img alt="Puppeteer" src="https://img.shields.io/badge/Puppeteer-%23333.svg?style=for-the-badge&logo=puppeteer&logoColor=white">
+</a>
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## 🌐 Live Demo
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Check out the live demo of EatEasy [**here**](https://your-demo-link-here.com).
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## 🙋‍♂️ Let's Connect
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+<p align="center">
+  <a href="mailto:your-email@example.com">
+    <img src="https://img.icons8.com/bubbles/50/000000/gmail.png" alt="Gmail"/>
+  </a>
+  <a href="https://github.com/your-github-username">
+    <img src="https://img.icons8.com/bubbles/50/000000/github.png" alt="GitHub"/>
+  </a>
+  <a href="https://www.linkedin.com/in/your-linkedin-username/">
+    <img src="https://img.icons8.com/bubbles/50/000000/linkedin.png" alt="LinkedIn"/>
+  </a>
+</p>
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+<hr/> 
