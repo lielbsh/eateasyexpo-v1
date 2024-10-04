@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'; // For man
 
 // Create an Axios instance
 const api = axios.create({
-  baseURL: 'http://eateasyserver.onrender.com', // Your backend URL
+  baseURL: 'https://eateasyserverdocker.onrender.com', // Your backend URL
   withCredentials: true
 });
 

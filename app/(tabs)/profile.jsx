@@ -11,11 +11,12 @@ import { router } from 'expo-router';
 import { removeData } from '../../scripts/data/asyncstorage.js';
 import { sendverifymail } from '../../scripts/regesterScript/sign-up.js';
 import { useNavigationGuard } from "../../components/navigation/navigationGuard";
-
+import LoadingModalSpiral  from "../../components/custom/LoadingModalSpiral.jsx"
 
 const Profile = () => {
   const { access,allowAccess } = useNavigationGuard();
   const { user,updateData,resetData } = useDataGuard();
+  const [loading, setLoading] = useState(false);
   const [updatedataoption,setupdatedataoption]=useState({
     change:false,
     name:user.updateoption.name,
@@ -31,6 +32,7 @@ const Profile = () => {
     { key: 1,name:"Change your password",
       handlefunction:async()=>{
         console.log("Change your password")
+        setLoading(true)
         let email=user.email
         let username=user.username
         await sighOutReq({},resetData)
@@ -43,6 +45,7 @@ const Profile = () => {
         await sendverifymail({email:email, action:'reset password'})
 
         setTimeout(() => {
+          setLoading(false)
           router.push('/verify');
           
         }, 2000)
@@ -56,6 +59,7 @@ const Profile = () => {
         router.push('/')
         
         setTimeout(async() => {
+          
           await sighOutReq({},resetData)
           removeData('jwt')
           removeData('userData')   
@@ -231,7 +235,7 @@ const Profile = () => {
           
 
         </ScrollView>
-        
+        <LoadingModalSpiral  _visible={loading} _opacity={0.5}/>
         <Image source={require('../../assets/images/background3.png')}  className="absolute w-[700px] h-[550px] top-[-200px] left-[230px]" style={{ opacity: 0.7, zIndex: -1 }}
         />
       <Image source={require('../../assets/images/background3.png')}  className="absolute w-[700px] h-[550px] top-[340px] left-[-550px]" style={{ opacity: 0.7, zIndex: -1 }}
