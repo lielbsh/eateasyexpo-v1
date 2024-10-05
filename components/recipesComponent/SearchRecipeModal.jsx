@@ -6,7 +6,6 @@ import {
   Image,
   ScrollView,
   TextInput,
-  ActivityIndicator,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { icons } from "../../constants/index.js";
@@ -171,42 +170,47 @@ const SearchRecipeModal = ({
             </View>
           ) : (
             <ScrollView className="mt-[20]">
-              {results.map((result, index) => (
-                <View
-                  key={index}
-                  style={{ position: "relative", marginBottom: 20 }}
-                >
-                  <TouchableOpacity
-                    className="flex-row items-center"
-                    onPress={() => {
-                      pressHandeler(result);
-                      setOpenRecipe(result);
-                    }}
-                  >
-                    {/* Image & Heart Button*/}
-                    <View style={{ position: "relative" }}>
-                      <Image
-                        source={{ uri: result.photosrc }}
-                        className="w-36 h-24"
-                        resizeMode="cover"
-                      />
-                      <HeartButton _recipe={result} _size={20} />
-                    </View>
-                    <Text className="font-bold text-[16px] ml-4 my-auto flex-shrink">
-                      {result.title}
-                    </Text>
-                  </TouchableOpacity>
+              {results.map((result, index) => {
+                if (result.photosrc) {
+                  return (
+                    <View
+                      key={index}
+                      style={{ position: "relative", marginBottom: 20 }}
+                    >
+                      <TouchableOpacity
+                        className="flex-row items-center"
+                        onPress={() => {
+                          pressHandeler(result);
+                          setOpenRecipe(result);
+                        }}
+                      >
+                        {/* Image & Heart Button*/}
+                        <View style={{ position: "relative" }}>
+                          <Image
+                            source={{ uri: result.photosrc }}
+                            className="w-36 h-24"
+                            resizeMode="cover"
+                          />
+                          <HeartButton _recipe={result} _size={20} />
+                        </View>
+                        <Text className="font-bold text-[16px] ml-4 my-auto flex-shrink">
+                          {result.title}
+                        </Text>
+                      </TouchableOpacity>
 
-                  {/* Horizontal line */}
-                  <View
-                    style={{
-                      height: 1,
-                      backgroundColor: "gray",
-                      marginVertical: 10,
-                    }}
-                  />
-                </View>
-              ))}
+                      {/* Horizontal line */}
+                      <View
+                        style={{
+                          height: 1,
+                          backgroundColor: "gray",
+                          marginVertical: 10,
+                        }}
+                      />
+                    </View>
+                  );
+                }
+              })}
+              <View className="h-[200px] w-[100%]" key={"filler"} />
             </ScrollView>
           )}
         </View>

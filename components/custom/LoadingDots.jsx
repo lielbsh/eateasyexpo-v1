@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text } from "react-native";
 
 const LoadingDots = () => {
   const [dots, setDots] = useState("");
@@ -21,7 +21,7 @@ const LoadingDots = () => {
           {/* Dots are animated */}
         </Text>
       </View>
-      <Text className="text-[16px] font-bold color-lime mt-[10px]">
+      <Text className="text-[16px] font-bold mt-[10px]">
         Hold tight, good things take time!
       </Text>
     </>
