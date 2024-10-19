@@ -84,13 +84,13 @@ Check out a quick video demo of the **EatEasy** app in action! Click here to wat
 ## 🙋‍♂️ Let's Connect
 
 <p align="center">
-  <a href="mailto:your-email@example.com">
+  <a href="mailto:liel1939@gmail.com">
     <img src="https://img.icons8.com/bubbles/50/000000/gmail.png" alt="Gmail"/>
   </a>
-  <a href="https://github.com/your-github-username">
+  <a href="https://github.com/lielbsh">
     <img src="https://img.icons8.com/bubbles/50/000000/github.png" alt="GitHub"/>
   </a>
-  <a href="https://www.linkedin.com/in/your-linkedin-username/">
+  <a href="https://www.linkedin.com/in/liel-benshmuel/">
     <img src="https://img.icons8.com/bubbles/50/000000/linkedin.png" alt="LinkedIn"/>
   </a>
 </p>
