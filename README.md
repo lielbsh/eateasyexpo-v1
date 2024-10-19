@@ -79,7 +79,7 @@ Check out a quick video demo of the **EatEasy** app in action! Click here to wat
 <img src="https://img.icons8.com/ios-filled/100/FF0000/circled-play.png"  style=";width:30px ;" alt="Video"/>
 </a>
 
----
+
 
 ## 🙋‍♂️ Let's Connect
 
